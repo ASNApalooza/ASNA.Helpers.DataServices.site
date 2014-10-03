@@ -1,0 +1,1 @@
+ruby assemble-eblast.rb index-template.html
