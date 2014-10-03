@@ -104,7 +104,7 @@
             <div class="clearfix">
                <h1>What is Walter?</h1>
               <!-- <div class="col-sm-3"> -->
-                <img src="public/images/Walter.png" class="pull-left img-thumbnail space-right"/>                            
+                <img src="public/images/walter.png" class="pull-left img-thumbnail space-right"/>                            
               <!-- </div> -->
               <!-- <div class="col-sm-9"> -->
                 <p class="lead">In the Big Lebowski, Walter Sobchak was The Dude's faithful sidekick. This library
@@ -257,7 +257,7 @@
 04  DclFld Query        Type(QueryDriver) 
 05  DclFld ExcelAdapter Type(ToExcelAdapter)
 06
-07  db = *New AdgConnection("*Public/IBMi") 
+07  db = *New AdgConnection("*Public/IBMi")
 08  
 09  Query = *New QueryDriver(db)
 10  Query.Args.Inputs.Library    = "examples"
@@ -384,7 +384,7 @@
 
 
 <p>The spreadsheet produced by the code above is shown below:
-<img src="spreadsheet.png" class="img-responsive">
+<img src="public/images/spreadsheet.png" class="img-responsive">
 
 
                 <hr>
@@ -403,7 +403,7 @@
 05 DclFld Query        Type(QueryDriver) 
 06 DclArray ListItems  Type(ListItem) Rank(1)
 07
-08 db = *New AdgConnection("*Public/IBMi");
+08 db = *New AdgConnection("*Public/IBMi")
 09
 10 Query = *New ASNA.Helpers.DataServices.QueryDriver(db)
 11 Query.Args.Inputs.Library    = "examples
