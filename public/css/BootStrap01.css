@@ -1,0 +1,17 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.company-logo {
+    padding-top: 8px;
+}
+.border {
+  border: 1px solid gray;
+}
+
+.form-container {
+  margin-top: 20px;
+}

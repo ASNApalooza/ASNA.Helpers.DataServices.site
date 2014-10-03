@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="public/vendor/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="public/vendor/bootstrap/dist/css/bootstrap-theme.min.css">
+
+    <!-- Page specific CSS. -->
+
+    <link rel="stylesheet" href="public/css/bootstrap01.css">
+
+
+</head>
+
+
+<body>    
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+
+          <img class="company-logo" src="logo-sm-1.0.8.png"/>  
+
+
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse">
+          <p class="navbar-text">AVR AutoComplete</p>
+
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+            <h1>Bootstrap starter template</h1>
+            <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>     
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 border">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
+            <li><a href="#state-example" role="tab" data-toggle="tab">State example</a></li>
+            <li><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
+            <li><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">...</div>
+            <div class="tab-pane" id="state-example">
+              <div class="form-container">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label for="input-by-state-name" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                      <input required class="form-control" id="input-by-state-name" placeholder="Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="input-by-state-address" class="col-sm-2 control-label">Address</label>
+                    <div class="col-sm-10">
+                      <input required class="form-control" id="input-by-state-address" placeholder="Address">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="input-by-state-city" class="col-sm-2 control-label">City</label>
+                    <div class="col-sm-8">
+                      <input required class="form-control" id="input-by-state-city" placeholder="City">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="input-by-state-state" class="col-sm-2 control-label">State</label>
+                    <div class="col-sm-10">
+                      <input required class="form-control" id="input-by-state-state" placeholder="State">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default">Sign in</button>
+                    </div>
+                  </div>
+                </form>              
+              </div>
+            </div>
+            <div class="tab-pane" id="messages">...</div>
+            <div class="tab-pane" id="settings">...</div>
+          </div>
+
+
+        </div>
+    </div><!-- /.container -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="public/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="public/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

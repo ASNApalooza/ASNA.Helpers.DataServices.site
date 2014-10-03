@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <title>Documentation Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"> -->
+    <link href="public/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/css/index.css" rel="stylesheet">
+
+
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+.content {padding-top: 80px ;padding-bottom: 20px}
+
+@media (min-width:768px){
+  #components .list-group {position: fixed; width:18%;}
+}
+
+@media (min-width:1024px){
+  #components .list-group {position: fixed; width:18%;}
+}
+
+@media (min-width:1400px){
+  #components .list-group {position: fixed; width:14%;}
+}
+
+
+@media (min-width:1920px){
+  #components .list-group {position: fixed; width:14%;}
+}
+
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Home</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav" id="tabs">
+            <li><a href="#components" data-toggle="tab">Documentation</a></li>
+            <li><a href="#about" data-toggle="tab">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="content container tab-content">
+      <div class="tab-pane active" id="home">
+        <div class="jumbotron">
+          <h1>Some Framework</h1>
+          <p>This is a template for a documentation website for a programming framework or library. It includes a template for components description with a navigation list.</p>
+          <p><a href="#" class="btn btn-primary btn-lg" role="button">Download &darr;</a></p>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="components">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="list-group">
+              <a href="#qf-overview" class="list-group-item">Overview</a>
+              <a href="#qf-instance-args" class="list-group-item">QueryFileInstanceArgs</a>
+              <a href="#item3" class="list-group-item">Item #3</a>
+              <a href="#item4" class="list-group-item">Item #4</a>
+              <a href="#item5" class="list-group-item">Item #5</a>
+            </div>
+          </div><!-- /.col-sm-3 -->
+
+          <div class="col-sm-9">
+            <!-- Item #1. -->
+<!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+<!-- Content starts here -->
+            <div id="qf-export-to-listitem" class="content section">
+              <h2>Export to ListItem array</h2>
+              <p>This example shows how to use Walter to export query results to an array of ListItems. An array of ListItems would most usually be used to populate ASP.NET DropDownList or the Windows ComboBox.
+
+                <pre><code>01 Using ASNA.Helpers.DataServices
+02 Using System.Web.UI.WebControls 
+03 ...
+04 DclFld db           Type(AdgConnection)
+05 DclFld Query        Type(QueryDriver) 
+06 DclArray ListItems  Type(ListItem) Rank(1)
+07
+08 db = *New AdgConnection("*Public/IBMi")
+09
+10 Query = *New ASNA.Helpers.DataServices.QueryDriver(db)
+11 Query.Args.Inputs.Library    = "examples
+12 Query.Args.Inputs.File       = "States"
+13 Query.Args.Inputs.FieldsList = "State:text,Abbrev:value"
+14 Query.Args.Inputs.Rows       = 1000
+15 Query.Args.Inputs.Query      = "STATE >= 'A'"
+16 Query.Args.Inputs.QueryFields.Add(*New ASNA.Helpers.DataServices.QueryField("STATE",""))
+17
+18 Query.OverrideAdapter(*New ASNA.Helpers.DataServices.ToLisItemArrayAdapter(Query.Args)) 
+19
+20 ListItems = Query.Exec() *As ListItem[]
+21
+22 db.Close()</code></pre>
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#qf-export-to-listitem-collapse">
+          Toggle source code annotation
+        </a>
+      </h4>
+    </div>
+    <div id="qf-export-to-listitem-collapse" class="panel-collapse collapse">
+      <div class="panel-body">
+                <table class="table table-striped">
+                <tr>
+                <th>Line</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>01</td>
+                <td>Add the Make the QueryDriver, QueryField, and QueryType objects available without needing to qualify them with their namespace.</td>
+                </tr>
+                <tr>
+                <td>02</td>
+                <td>Make the ListItem object available to the app.</td>
+                </tr>
+                <tr>
+                <td>04</td>
+                <td>Declare a DataGate DB connection. This is the core DB connection used by AVR's DclDB. Both DB connections participate in DataGate connection pooling and they both use the same Database Name scheme.</td>
+                </tr>
+                <tr>
+                <td>05</td>
+                <td>Declare an instance of the QueryDriver. This is Walter's core query object.</td>
+                </tr>
+                <tr>
+                <tr>
+                <td>06</td>
+                <td>Declare an array of ListItems. This will contain the result of Walter's query.</td>
+                </tr>
+                <tr>
+                <td>08</td>
+                <td>Instance the database connection.</td>
+                </tr>
+                <tr>
+                <tr>
+                <td>10</td>
+                <td>Instance the QueryFile object.</td>
+                </tr>
+                <tr>
+                <td>11</td>
+                <td>Specify the library for the query.</td>
+                </tr>
+                <tr>
+                <td>12</td>
+                <td>Specify the file name name for the query.</td>
+                </tr>
+                <tr>
+                <td>13</td>
+                <td>Specify the fields from the file to return. The ToListItemArray output adapter requires field aliases to indicate which fields provide the text and values properties for the 
+                    list item. The syntax of each field then is <FieldName>:<AliasName>.</td>
+                </tr>
+                <tr>
+                <td>14</td>
+                <td>Specify the maximum number of rows for the query to return.</td>
+                </tr>
+                <tr>
+                <td>15</td>
+                <td>Specify the query. This can use AND and OR statements and it specifies tokens that are replaced at runtime. See the next line for more info.</td>
+                </tr>
+                <tr>
+                <td>16</td>
+                <td>The QueryFields collection provides the field values for the Query property. In this example, the query is a static query&dash;that is there aren't any dynamic parameters needed for the query. However, you still need to provide a QueryField for the fields used in a static query; the value for fields used in a static query aren't used.</td>
+                </tr>
+                <td>18</td>
+                <td>Override Walter's default output adapter with the ToListItemArray adapter. A reference isn't needed anywhere for this adapter so it is instanced inline.</td>
+                </tr>
+                <tr>
+                <td>20</td>
+                <td>Use the QueryDriver's Exec() method to execute its query, being sure to cast its result to the type returned by the output adapter.</td>
+                </tr>
+                <tr>
+                <td>22</td>
+                <td>Close the underlying database server connection. This should always be done after you use Walter's QueryFile.Exec() method. This connection does participate in connection pooling so there is very little overhead in reconnecting.</td>
+                </tr>
+                </table>
+            </div> <!-- .panel-body -->
+      </div><!-- panel-collapse collapse -->
+    </div><!-- panel -->
+</div><!-- panel group -->
+
+<p>The code below shows how to use the array of ListItems to populate a Windows ComboBox. The ListItem object resides in the System.Web.UI.WebControls class. Therefore, when you use Walter to return an array of ListItems for a Windows app, be sure to add a reference to the System.Web assembly and adding a using state for System.Web.UI.WebControls.
+
+                <pre><code>01 Using System.Web.UI.WebControls
+02 ...
+03 comboboxStates.Items.Clear()
+04 comboboxStates.Items.AddRange(ListItems) 
+05 comboboxStates.SelectedIndex = 0</code></pre> 
+
+<p>The code above shows how to use the Windows ComboBox's AddRange() method to assign the resulting ListItemArray to the ComboBox. Similiar code is used with the ASP.NET DropDownList control.</p>
+<pre><code>BegSr comboboxStates_SelectedIndexChanged Access(*Private) +
+                              Event(*this.comboboxStates.SelectedIndexChanged)
+    DclSrParm sender Type(*Object)
+    DclSrParm e Type(System.EventArgs)
+
+    DclFld li Type(ListItem) 
+
+    li = comboboxStates.SelectedItem *As ListItem
+    // li.value = item's value.
+    // li.text =item's text.
+EndSr</code></pre>
+
+<p>Use the code above to fetch the selected ListItem from a Windows ComboBox. The selected ListItem provides the select text and value for the selected item.</p>
+
+
+
+                <hr>
+</div><!-- content section-->
+
+<!-- Content ends here -->
+<!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+          </div>
+        </div>
+      </div>
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="public/vendor/jquery/dist/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="public/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+      /* scroll to top when clicked on navbar */
+      $(".navbar > .container").on("click", function(e){
+        $('html,body').animate({scrollTop:0},'slow');
+      });
+
+      /* brand logo click */
+      $(".navbar-brand").on("click",function(){
+        $("#home").addClass("active").siblings().removeClass("active");
+        $("#tabs > li").removeClass("active");
+      });
+
+      /* make list-group selectable */
+      $(".list-group>a").on("click", function(){
+        $(this).addClass("active").siblings().removeClass("active");
+      });
+
+      /* auto select list-group item on scroll */
+      $(document).scroll(function(){
+        $('.section').each(function(){
+          var position = $(document).scrollTop() - $(this).offset().top;
+          if(position < 30 && position > -115) {
+            $($('a[href$='+$(this).attr("id")+']')).click();
+          }
+        });      
+      });
+
+      /* set hash on tab select */
+      $('#tabs a').click(function() {
+        window.location.hash = $(this).attr("href");
+        $(document).scrollTop(0);
+        $(".list-group > a").removeClass("active");
+      });
+
+      $(document).ready(function(){
+
+        if(window.location.hash !== ""){
+          /* open tab based on hash value */
+          if($('#tabs > li > a[href="'+window.location.hash+'"]').length){
+            $('#tabs > li > a[href="'+window.location.hash+'"]').tab('show');
+            setTimeout(function(){$(document).scrollTop(0)}, 200);
+          }
+          /* open tab and section based on hash value */
+          if($('.list-group > a[href="'+window.location.hash+'"]').length){
+            var tab = $('.list-group > a[href="'+window.location.hash+'"]').closest(".tab-pane").attr("id");
+            $('a[href="#'+tab+'"]').tab('show');
+            $('.list-group > a[href="'+window.location.hash+'"]').click();
+            setTimeout(function(){$(document).scrollTop($(window.location.hash).offset().top)}, 200);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

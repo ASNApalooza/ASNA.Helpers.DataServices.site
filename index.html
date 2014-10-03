@@ -1,71 +1,681 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Dataservices.queryfile by ASNApalooza</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Walter</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"> -->
+    <link href="public/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/css/index.css" rel="stylesheet">
+
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+
+.content {padding-top: 80px ;padding-bottom: 20px}
+
+@media (min-width:768px){
+  #components .list-group {position: fixed; width:18%;}
+}
+
+@media (min-width:1024px){
+  #components .list-group {position: fixed; width:18%;}
+}
+
+@media (min-width:1400px){
+  #components .list-group {position: fixed; width:14%;}
+}
+
+@media (min-width:1920px){
+  #components .list-group {position: fixed; width:14%;}
+}
+    </style>
+
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Dataservices.queryfile</h1>
-        <p>ASNA QueryFile object for Visual RPG</p>
 
-        <p class="view"><a href="https://github.com/ASNApalooza/DataServices.QueryFile">View the Project on GitHub <small>ASNApalooza/DataServices.QueryFile</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/ASNApalooza/DataServices.QueryFile/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/ASNApalooza/DataServices.QueryFile/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/ASNApalooza/DataServices.QueryFile">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/ASNApalooza">ASNApalooza</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Home</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav" id="tabs">
+            <li><a href="#components" data-toggle="tab">Documentation</a></li>
+            <li><a href="#about" data-toggle="tab">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+
+    <div class="content container tab-content">
+
+      <div class="tab-pane active" id="home">
+        <div class="jumbotron">
+          <h1>Some Framework</h1>
+          <p>This is a template for a documentation website for a programming framework or library. It includes a template for components description with a navigation list.</p>
+          <p><a href="#" class="btn btn-primary btn-lg" role="button">Download &darr;</a></p>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="components">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="list-group">
+              <a href="#qf-overview" class="list-group-item">Overview</a>
+              <a href="#qf-export-to-datatable" class="list-group-item">Export to DataTable</a>
+              <a href="#qf-excel-to-file" class="list-group-item">Export to Excel file</a>
+              <a href="#qf-export-to-listitem" class="list-group-item">Export to ListItem array</a>
+              <a href="#item3" class="list-group-item">Item #3</a>
+              <a href="#item4" class="list-group-item">Item #4</a>
+              <a href="#item5" class="list-group-item">Item #5</a>
+              <a href="#item6" class="list-group-item">Item #6</a>
+              <a href="#item7" class="list-group-item">Item #7</a>
+              <a href="#item8" class="list-group-item">Item #8</a>
+              <a href="#item9" class="list-group-item">Item #9</a>
+              <a href="#item10" class="list-group-item">Item #10</a>
+              <a href="#item11" class="list-group-item">Item #11</a>
+              <a href="#item12" class="list-group-item">Item #12</a>
+            </div>
+          </div><!-- /.col-sm-3 -->
+
+          <div class="col-sm-9">
+            <div class="clearfix">
+               <h1>What is Walter?</h1>
+              <!-- <div class="col-sm-3"> -->
+                <img src="walter.png" class="pull-left img-thumbnail space-right"/>                            
+              <!-- </div> -->
+              <!-- <div class="col-sm-9"> -->
+                <p class="lead">In the Big Lebowski, Walter Sobchak was The Dude's faithful sidekick. This library
+                is intended to be a faithful sidekick for your AVR projects. The name Walter is also a nod 
+                to one of ASNA's resident geniuses, Walter Goodwin. Walter's quiet, steady presence has 
+                had a huge influence on all that we do with AVR for many years. </p>
+                <p class="lead">Let's see what Walter can do for you.
+            </div>
+
+<!-- Begin: qf_overview.html -->
+            <div id="qf-overview" class="content section">
+              <h2>Walter overview</h2>
+                <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. While Walter is intended primarily for ASNA Visual RPG, it would also work just fine with VB.NET or C#. 
+
+                <p>Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
+
+                <p>Walter's query output is driven by output adapters. The default output adapter emits query output as a DataTable. The DataTable can be bound to most Windows and ASP.NET controls (including Windows' DataGridView and ASP.NET's GridView). Walter also includes output adapters to emit query results as: </p>
+
+                <ul class="task-list">
+                <li>  <strong>Json</strong>. Walter's Json output can be used in a variety of ways including feeding a JavaScript autocomplete widget (such as jQuery UI's <a href="http://jqueryui.com/autocomplete/">AutoComplete</a>) or feeding a client grid such as the jQuery DataTable grid. Walter includes an HTTP handler to make its Json output easy to use with ASP.NET. A small JavaScript wrapper for the jQuery UI AutoComplete widget is included. Using Walter and its components make it very easy to add AutoComplete to your ASP.NET pages (including Wings and Monarch pages). </li>
+                <li>  <strong>Excel</strong>. Walter's Excel adapter produces Excel spreadsheets (in XSLX format) on either Windows Web servers or Windows clients, without needing Excel installed. This adapter uses the <a href="https://closedxml.codeplex.com/">ClosedXM</a> library (which itself is a wrapper around MIcrosoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK</a>.<br>
+                </li>
+                <li><strong>ListItem array</strong>. This adapter produces a ListItem array for populating ASP.NET's DropDownList controls or Windows's ComboBox. </li>
+                </ul><p>Should you need some other output type, it's easy to write your own output adapters by implementing a simple interface that Walter provides.</p>
+                <p>The next several sections provide overviews of using Walter with several of its outputs. 
+
+                <hr>
+            </div>
+<!-- End: qf_overview.html -->
+
+<!-- Begin: qf-export-to-datatable.html -->
+            <div id="qf-export-to-datatable" class="content section">
+              <h2>Export to DataTable</h2>
+              <p>This example shows how to use Walter to export query results to a DataTable. This code could be used in either Windows or ASP.NET to bind data to a grid or other control. Exporting to a DataTable uses Walter's default output adapter so no explicit output adapter instancing is required. 
+
+                <pre><code>01  Using ASNA.Helpers.DataServices
+02  
+03  DclFld db     Type(AdgConnection)
+04  DclFld Query  Type(QueryDriver) 
+05  
+06  db = *New AdgConnection("*Public/IBMi") 
+07  
+08  Query = *New QueryDriver(db)
+09  Query.Args.Inputs.Library    = "examples"
+10  Query.Args.Inputs.File       = "CMastNewL2"
+11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
+12  Query.Args.Inputs.Rows       = 1000
+13  Query.Args.Inputs.QueryType  = QueryType.Simple
+14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
+16  
+17  grid.DataSource = Query.Exec() *As DataTable
+18
+19 db.Close()</code></pre>
+
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#qf-export-to-datatable-collapse">
+          Toggle source code annotation
+        </a>
+      </h4>
+    </div>
+    <div id="qf-export-to-datatable-collapse" class="panel-collapse collapse">
+      <div class="panel-body">
+                <table class="table table-striped">
+                <tr>
+                <th>Line</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>01</td>
+                <td>Make the QueryDriver, QueryField, and QueryType objects available without needing to qualify them with their namespace.</td>
+                </tr>
+                <tr>
+                <td>03</td>
+                <td>Declare a DataGate DB connection. This is the core DB connection used by AVR's DclDB. Both DB connections participate in DataGate connection pooling and they both use the same Database Name scheme.</td>
+                </tr>
+                <tr>
+                <td>04</td>
+                <td>Declare an instance of the QueryDriver. This is Walter's core query object.</td>
+                </tr>
+                <tr>
+                <td>06</td>
+                <td>Instance the database connection.</td>
+                </tr>
+                <tr>
+                <td>08</td>
+                <td>Instance the QueryFile object.</td>
+                </tr>
+                <tr>
+                <td>09</td>
+                <td>Specify the library for the query.</td>
+                </tr>
+                <tr>
+                <td>10</td>
+                <td>Specify the file name name for the query.</td>
+                </tr>
+                <tr>
+                <td>11</td>
+                <td>Specify the fields from the file to return. The DataTable column names will also be the field names provided here.</td>
+                </tr>
+                <tr>
+                <td>12</td>
+                <td>Specify the maximum number of rows for the query to return.</td>
+                </tr>
+                <tr>
+                <td>13</td>
+                <td>Specify that this is a simple query. This is the default query and it needs a query specified.</td>
+                </tr>
+                <tr>
+                <td>14</td>
+                <td>Specify the query. This can use AND and OR statements and it specifies tokens that are replaced at runtime. See the next line for more info.</td>
+                </tr>
+                <tr>
+                <td>15</td>
+                <td>The QueryFields collection provides the field values for the Query property. In this example, the replacement token {CMSTATE} is replaced by the value in the State variable at runtime. For example, if the State variable value is 'IN' then the query in line 14 resolves to CMSTATE = 'IN' at runtime. Each field used in the query must be represented by a corresponding field in the QueryFields collection. </td>
+                </tr>
+                <tr>
+                <td>17</td>
+                <td>Call the QueryDriver's Exec() method to execute its query. The default output adapter returns a DataTable and (because other adapters can return other types) the return value from the adapter in use must be cast appropriately.</td>
+                </tr>
+                <tr>
+                <td>19</td>
+                <td>Close the underlying database server connection. This should always be done after you use Walter's QueryDriver's Exec() method. This connection does participate in connection pooling so there is very little overhead in reconnecting.  </td>
+                </tr>
+                </table>
+            </div> <!-- .panel-body -->
+      </div><!-- panel-collapse collapse -->
+    </div><!-- panel -->
+</div><!-- panel group -->
+
+<p>Walter uses an ASNA.DataGate.Client.AdgConnection. This connection object uses the same DataBaseName-driven scheme that AVR's DCLDB object uses. Walter DB connections interoperates with AVR's DCLDB database connection pooling. As a general rule you should always close Walter's database connection immediately after executing the QueryDriver's Exec() method.</p>
+
+
+                <hr>
+            </div>
+<!-- End: qf-export-to-datatable.html -->
+
+<!-- Begin: qf-excel-to-file.html -->
+            <div id="qf-excel-to-file" class="content section">
+              <h2>Export to Excel</h2>
+              <p>This example shows how to use Walter to create an Excel spreadsheet and save it to a local file. Another example shows how to produce an Excel spreadsheet from an ASP.NET app.</p>
+
+                <pre><code>01  Using ASNA.Helpers.DataServices
+02  
+03  DclFld db           Type(AdgConnection)
+04  DclFld Query        Type(QueryDriver) 
+05  DclFld ExcelAdapter Type(ToExcelAdapter)
+06
+07  db = *New AdgConnection("*Public/IBMi") 
+08  
+09  Query = *New QueryDriver(db)
+10  Query.Args.Inputs.Library    = "examples"
+11  Query.Args.Inputs.File       = "CMastNewL2"
+12  Query.Args.Inputs.FieldsList = "CMCUSTNO:Number,CMNAME:Name,+
+                                    CMADDR1:Address,CMCITY:City,CMSTATE:State"
+13  Query.Args.Inputs.Rows       = 1000
+14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
+16
+17  Query.Args.Inputs.Options.Add("heading","Customer Listing")
+18  Query.Args.Inputs.Options.Add("worksheet_name","Customers")
+19
+20  ExcelAdapter = *New ToExcelAdapter(Query.Args) 
+21  Query.OverrideAdapter(*New ToExcelAdapter(Query.Args))
+22  Query.Exec() 
+23  db.Close()
+24  ExcelAdapter.SaveToLocalFile("c:\users\public\documents\test.xlsx")</code></pre>
+
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#qf-excel-to-file-collapse">
+          Toggle source code annotation
+        </a>
+      </h4>
+    </div>
+    <div id="qf-excel-to-file-collapse" class="panel-collapse collapse">
+      <div class="panel-body">
+                <table class="table table-striped">
+                <tr>
+                <th>Line</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>01</td>
+                <td>Make the QueryDriver, QueryField, and QueryType objects available without needing to qualify them with their namespace.</td>
+                </tr>
+                <tr>
+                <td>03</td>
+                <td>Declare a DataGate DB connection. This is the core DB connection used by AVR's DclDB. Both DB connections participate in DataGate connection pooling and they both use the same Database Name scheme.</td>
+                </tr>
+                <tr>
+                <td>04</td>
+                <td>Declare an instance of the QueryDriver. This is Walter's core query object.</td>
+                </tr>
+                <tr>
+                <td>05</td>
+                <td>Declare an instance of the standard Excel output adapter.</td>
+                </tr> 
+                <tr>
+                <td>07</td>
+                <td>Instance the database connection.</td>
+                </tr>
+                <tr>
+                <td>09</td>
+                <td>Instance the QueryFile object.</td>
+                </tr>
+                <tr>
+                <td>10</td>
+                <td>Specify the library for the query.</td>
+                </tr>
+                <tr>
+                <td>11</td>
+                <td>Specify the file for the query.</td>
+                </tr>
+                <tr>
+                <td>12</td>
+                <td>Specify the file name name for the query. This is a comma-separated list of fields. Each field in the list can also include an alias preceded by a colon. The standard 
+                 Excel output adapter uses these alias for column headings. </td>
+                </tr>
+                <tr>
+                <td>13</td>
+                <td>Specify the maximum number of rows for the query to return.</td>
+                </tr>
+                <tr>
+                <td>14</td>
+                <td>Specify that this is a simple query. This is the default query and it needs a query specified.</td>
+                </tr>
+                <tr>
+                <td>15</td>
+                <td>Specify the query. This can use AND and OR statements and it specifies tokens that are replaced at runtime. See the next line for more info.</td>
+                </tr>
+                <tr>
+                <td>15</td>
+                <td>The QueryFields collection provides the field values for the Query property. In this example, the replacement token {CMSTATE} is replaced by the value in the State variable at runtime. For example, if the State variable value is 'IN' then the query in line 14 resolves to CMSTATE = 'IN' at runtime. Each field used in the query must be represented by a corresponding field in the QueryFields collection. </td>
+                </tr>
+                <tr>
+                <td>17</td>
+                <td>Specify the spreadsheet heading. The use of the Options dictionary is specific to the output adapter. See each adapter's documentation for the options it supports.</td>
+                </tr>
+                <tr>
+                <td>18</td>
+                <td>Specify the spreadhseet worksheet name.</td>
+                </tr>
+                <tr>
+                <td>20</td>
+                <td>Instance the standard Excel output adapter.</td>
+                </tr>
+                <tr>
+                <td>21</td>
+                <td>Override the output adapter with the newly instanced Excel adapter.</td>
+                </tr>
+                <tr>
+                <td>22</td>
+                <td>Call the QueryDriver's Exec() method to execute its query. In the case of the standard Excel output adapter, nothing is returned from this method.</td>
+                </tr>
+                <tr>
+                <td>23</td>
+                <td>Use the standard Excel output adapter's SaveToLocalFile() method to save the 
+                spreadsheet created.</td>
+                </tr>
+                <tr>
+                <td>24</td>
+                <td>Close the underlying database server connection. This should always be done after you use Walter's QueryFile.Exec() method. This connection does participate in connection pooling so there is very little overhead in reconnecting.  </td>
+                </tr>
+                </table>
+            </div> <!-- .panel-body -->
+      </div><!-- panel-collapse collapse -->
+    </div><!-- panel -->
+</div><!-- panel group -->
+
+
+<p>The spreadsheet produced by the code above is shown below:
+<img src="spreadsheet.png" class="img-responsive">
+
+
+                <hr>
+            </div>
+<!-- End: qf-excel-to-file.html -->
+
+<!-- Begin: qf-export-to-listitem.html -->
+            <div id="qf-export-to-listitem" class="content section">
+              <h2>Export to ListItem array</h2>
+              <p>This example shows how to use Walter to export query results to an array of ListItems. An array of ListItems would most usually be used to populate ASP.NET DropDownList or the Windows ComboBox.
+
+                <pre><code>01 Using ASNA.Helpers.DataServices
+02 Using System.Web.UI.WebControls 
+03 ...
+04 DclFld db           Type(AdgConnection)
+05 DclFld Query        Type(QueryDriver) 
+06 DclArray ListItems  Type(ListItem) Rank(1)
+07
+08 db = *New AdgConnection("*Public/IBMi");
+09
+10 Query = *New ASNA.Helpers.DataServices.QueryDriver(db)
+11 Query.Args.Inputs.Library    = "examples
+12 Query.Args.Inputs.File       = "States"
+13 Query.Args.Inputs.FieldsList = "State:text,Abbrev:value"
+14 Query.Args.Inputs.Rows       = 1000
+15 Query.Args.Inputs.Query      = "STATE >= 'A'"
+16 Query.Args.Inputs.QueryFields.Add(*New ASNA.Helpers.DataServices.QueryField("STATE",""))
+17
+18 Query.OverrideAdapter(*New ASNA.Helpers.DataServices.ToLisItemArrayAdapter(Query.Args)) 
+19
+20 ListItems = Query.Exec() *As ListItem[]
+21
+22 db.Close()</code></pre>
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#qf-export-to-listitem-collapse">
+          Toggle source code annotation
+        </a>
+      </h4>
+    </div>
+    <div id="qf-export-to-listitem-collapse" class="panel-collapse collapse">
+      <div class="panel-body">
+                <table class="table table-striped">
+                <tr>
+                <th>Line</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>01</td>
+                <td>Add the Make the QueryDriver, QueryField, and QueryType objects available without needing to qualify them with their namespace.</td>
+                </tr>
+                <tr>
+                <td>02</td>
+                <td>Make the ListItem object available to the app.</td>
+                </tr>
+                <tr>
+                <td>04</td>
+                <td>Declare a DataGate DB connection. This is the core DB connection used by AVR's DclDB. Both DB connections participate in DataGate connection pooling and they both use the same Database Name scheme.</td>
+                </tr>
+                <tr>
+                <td>05</td>
+                <td>Declare an instance of the QueryDriver. This is Walter's core query object.</td>
+                </tr>
+                <tr>
+                <tr>
+                <td>06</td>
+                <td>Declare an array of ListItems. This will contain the result of Walter's query.</td>
+                </tr>
+                <tr>
+                <td>08</td>
+                <td>Instance the database connection.</td>
+                </tr>
+                <tr>
+                <tr>
+                <td>10</td>
+                <td>Instance the QueryFile object.</td>
+                </tr>
+                <tr>
+                <td>11</td>
+                <td>Specify the library for the query.</td>
+                </tr>
+                <tr>
+                <td>12</td>
+                <td>Specify the file name name for the query.</td>
+                </tr>
+                <tr>
+                <td>13</td>
+                <td>Specify the fields from the file to return. The ToListItemArray output adapter requires field aliases to indicate which fields provide the text and values properties for the 
+                    list item. The syntax of each field then is <FieldName>:<AliasName>.</td>
+                </tr>
+                <tr>
+                <td>14</td>
+                <td>Specify the maximum number of rows for the query to return.</td>
+                </tr>
+                <tr>
+                <td>15</td>
+                <td>Specify the query. This can use AND and OR statements and it specifies tokens that are replaced at runtime. See the next line for more info.</td>
+                </tr>
+                <tr>
+                <td>16</td>
+                <td>The QueryFields collection provides the field values for the Query property. In this example, the query is a static query&dash;that is there aren't any dynamic parameters needed for the query. However, you still need to provide a QueryField for the fields used in a static query; the value for fields used in a static query aren't used.</td>
+                </tr>
+                <td>18</td>
+                <td>Override Walter's default output adapter with the ToListItemArray adapter. A reference isn't needed anywhere for this adapter so it is instanced inline.</td>
+                </tr>
+                <tr>
+                <td>20</td>
+                <td>Use the QueryDriver's Exec() method to execute its query, being sure to cast its result to the type returned by the output adapter.</td>
+                </tr>
+                <tr>
+                <td>22</td>
+                <td>Close the underlying database server connection. This should always be done after you use Walter's QueryFile.Exec() method. This connection does participate in connection pooling so there is very little overhead in reconnecting.</td>
+                </tr>
+                </table>
+            </div> <!-- .panel-body -->
+      </div><!-- panel-collapse collapse -->
+    </div><!-- panel -->
+</div><!-- panel group -->
+
+<p>The code below shows how to use the array of ListItems to populate a Windows ComboBox. The ListItem object resides in the System.Web.UI.WebControls class. Therefore, when you use Walter to return an array of ListItems for a Windows app, be sure to add a reference to the System.Web assembly and adding a using state for System.Web.UI.WebControls.
+
+                <pre><code>01 Using System.Web.UI.WebControls
+02 ...
+03 comboboxStates.Items.Clear()
+04 comboboxStates.Items.AddRange(ListItems) 
+05 comboboxStates.SelectedIndex = 0</code></pre> 
+
+<p>The code above shows how to use the Windows ComboBox's AddRange() method to assign the resulting ListItemArray to the ComboBox. Similiar code is used with the ASP.NET DropDownList control.</p>
+<pre><code>BegSr comboboxStates_SelectedIndexChanged Access(*Private) +
+                              Event(*this.comboboxStates.SelectedIndexChanged)
+    DclSrParm sender Type(*Object)
+    DclSrParm e Type(System.EventArgs)
+
+    DclFld li Type(ListItem) 
+
+    li = comboboxStates.SelectedItem *As ListItem
+    // li.value = item's value.
+    // li.text =item's text.
+EndSr</code></pre>
+
+<p>Use the code above to fetch the selected ListItem from a Windows ComboBox. The selected ListItem provides the select text and value for the selected item.</p>
+
+
+
+                <hr>
+</div><!-- content section-->
+
+<!-- End: qf-export-to-listitem.html -->
+
+            <!-- Item #3. -->
+            <div id="item3" class="content section">
+              <h3>Item #3</h3>
+              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
+            </div>
+
+            <!-- Item 4. -->
+            <div id="item4" class="content section">
+              <h3>Item #4</h3>
+              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
+            </div>
+
+            <!-- Item 5. -->
+            <div id="item5" class="content section">
+              <h3>Item #5</h3>
+              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
+            </div>
+
+            <!-- Item 6. -->
+            <div id="item6" class="content section">
+              <h3>Item #6</h3>
+              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
+            </div>
+
+            <!-- Item 7. -->
+            <div id="item7" class="content section">
+              <h3>Item #7</h3>
+              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
+            </div>
+
+            <!-- Item 8. -->
+            <div id="item8" class="content section">
+              <h3>Item #8</h3>
+              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
+            </div>
+
+            <!-- Item 9. -->
+            <div id="item9" class="content section">
+              <h3>Item #9</h3>
+              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
+            </div>
+
+            <!-- Item 10. -->
+            <div id="item10" class="content section">
+              <h3>Item #10</h3>
+              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
+            </div>
+
+            <!-- Item 11. -->
+            <div id="item11" class="content section">
+              <h3>Item #11</h3>
+              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
+            </div>
+
+            <!-- Item 12. -->
+            <div id="item12" class="content section">
+              <h3>Item #12</h3>
+              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
+            </div>
+
+          </div><!-- /.col-sm-9 -->
+        </div>
+
+      </div> <!-- .components -->
+
+      <div class="tab-pane" id="about">
+        <h1>About</h1>
+        <p class="lead">This section is for about and resources.</p>
+      </div>      
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="public/vendor/jquery/dist/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="public/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!--
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+-->
+    <script>
+
+      /* scroll to top when clicked on navbar */
+      $(".navbar > .container").on("click", function(e){
+        $('html,body').animate({scrollTop:0},'slow');
+      });
+
+      /* brand logo click */
+      $(".navbar-brand").on("click",function(){
+        $("#home").addClass("active").siblings().removeClass("active");
+        $("#tabs > li").removeClass("active");
+      });
+
+      /* make list-group selectable */
+      $(".list-group>a").on("click", function(){
+        $(this).addClass("active").siblings().removeClass("active");
+      });
+
+      /* auto select list-group item on scroll */
+      $(document).scroll(function(){
+        $('.section').each(function(){
+          var position = $(document).scrollTop() - $(this).offset().top;
+          if(position < 30 && position > -115) {
+            $($('a[href$='+$(this).attr("id")+']')).click();
+          }
+        });      
+      });
+
+      /* set hash on tab select */
+      $('#tabs a').click(function() {
+        window.location.hash = $(this).attr("href");
+        $(document).scrollTop(0);
+        $(".list-group > a").removeClass("active");
+      });
+
+      $(document).ready(function(){
+
+        if(window.location.hash !== ""){
+          /* open tab based on hash value */
+          if($('#tabs > li > a[href="'+window.location.hash+'"]').length){
+            $('#tabs > li > a[href="'+window.location.hash+'"]').tab('show');
+            setTimeout(function(){$(document).scrollTop(0)}, 200);
+          }
+          /* open tab and section based on hash value */
+          if($('.list-group > a[href="'+window.location.hash+'"]').length){
+            var tab = $('.list-group > a[href="'+window.location.hash+'"]').closest(".tab-pane").attr("id");
+            $('a[href="#'+tab+'"]').tab('show');
+            $('.list-group > a[href="'+window.location.hash+'"]').click();
+            setTimeout(function(){$(document).scrollTop($(window.location.hash).offset().top)}, 200);
+          }
+        }
+      });
+    </script>
   </body>
 </html>
