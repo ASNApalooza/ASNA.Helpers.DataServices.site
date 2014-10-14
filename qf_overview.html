@@ -101,16 +101,49 @@
               <h2>Walter overview</h2>
                 <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. While Walter is intended primarily for ASNA Visual RPG, it would also work just fine with VB.NET or C#. 
 
-                <p>Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
+                <p>Walter implements a declarative programming model that makes is easy to fetch dynamic query results with a minimal of effort and with high performance. When used against the IBM i, Walter consistently produces output with
+                subsecond response times (usually less than 250 milliseconds). It takes about 1-15 lines of code to configure Walter and produce output with it. Part of the reason I wrote Walter is that I got tired of needing to create an endless supply of custom classes for reading data and producing that data in a variety of formats.</p>
+
+                <p>Some of Walter's design goals are:
+                <ul>
+                <li>Allow runtime configuration of queries, including library, file, fields, selection criteria, and sort
+                order with a declarative, logic-free syntax. You only need to tell Walter what you want, you don't need
+                tell how it how to get it.</li>
+                <li>Provide dynamic, performant query capabilities independent of the availability of explicit access paths 
+                provided by logical files. Walter works with the local ASNA DataBase, but really shines when used with the 
+                IBM i. On the IBM i, Walter puts OpenQueryFile to good use. Walter also works with ASNA's DataGate for 
+                SQL Server, but has been tested the least there so far.</li>
+                <li>Provide built-in, key-driven paging support. When used against logical files with a known key 
+                structure, Walter provides built in forward paging. You don't have to manage "next" key values and Walter
+                tells you when the last page has been read.</li>  
+                <li>Support several standard output types but also provide an plug-in model so that additional output
+                types can easily be added later. Walter's default output type is a System.Data.DataTable, but it includes
+                output adapters to produce an array of ListItems (for populating drop-down lists in Windows and Web
+                applications), Excel spreadsheets (in native XLSX format), and Json for client-side JavaScript use. </li>
+                <li>Allow a common way to pass query meta data into Walter's output adapters. This allows each output
+                adapter a measure of customization. For example, Walter's Excel output adapter uses this meta data 
+                to provide a spreadsheet heading and the worksheet name.</li>
+                <li>Provide robust error handling so trouble-shooting is easy.</li>
+                <li>Allow for the easy aliasing of field names so that, for example, when producing an Excel spreadsheet
+                user-friendly column names are available.</li> 
+                <li>Be usable by any .NET application type. Walter works with Windows, ASP.NET and Web services and can be coded
+                in AVR, VB.NET, C# or even JavaScript. Walter makes a great partner for extending ASNA Wings, Monarch and 
+                even Mobile RPG applications. Walter can be used directly to create department-level projects or it can be used as a primitive in the creation of more robust database repository class libraries (where it could be tapped to produce lists for those libaries). Walter has a sister project, ASNA.Helpers.ASPNET that provides helper facilities
+                for using Walter in ASP.NET applications.</li>
+                <li>Provide an interactive query tester for creating and testing queries and generating the AVR, C#, or even
+                JavaScript. </li>
+                <li>Be formally open sourced so that others can easily extend, enhance, and bugfix Walter.</li>
+                </p>
 
                 <p>Walter's query output is driven by output adapters. The default output adapter emits query output as a DataTable. The DataTable can be bound to most Windows and ASP.NET controls (including Windows' DataGridView and ASP.NET's GridView). Walter also includes output adapters to emit query results as: </p>
 
                 <ul class="task-list">
-                <li>  <strong>Json</strong>. Walter's Json output can be used in a variety of ways including feeding a JavaScript autocomplete widget (such as jQuery UI's <a href="http://jqueryui.com/autocomplete/">AutoComplete</a>) or feeding a client grid such as the jQuery DataTable grid. Walter includes an HTTP handler to make its Json output easy to use with ASP.NET. A small JavaScript wrapper for the jQuery UI AutoComplete widget is included. Using Walter and its components make it very easy to add AutoComplete to your ASP.NET pages (including Wings and Monarch pages). </li>
-                <li>  <strong>Excel</strong>. Walter's Excel adapter produces Excel spreadsheets (in XSLX format) on either Windows Web servers or Windows clients, without needing Excel installed. This adapter uses the <a href="https://closedxml.codeplex.com/">ClosedXM</a> library (which itself is a wrapper around MIcrosoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK</a>.<br>
+                <li><strong>Json</strong>. Walter's Json output can be used in a variety of ways including feeding a JavaScript autocomplete widget (such as jQuery UI's <a href="http://jqueryui.com/autocomplete/">AutoComplete</a>) or feeding a client grid such as the jQuery DataTable grid. Walter includes an HTTP handler to make its Json output easy to use with ASP.NET. A small JavaScript wrapper for the jQuery UI AutoComplete widget is included. Using Walter and its components make it very easy to add AutoComplete to your ASP.NET pages (including Wings and Monarch pages). </li>
+                <li><strong>Excel</strong>. Walter's Excel adapter produces Excel spreadsheets (in XSLX format) on either Windows Web servers or Windows clients, without needing Excel installed. This adapter uses the <a href="https://closedxml.codeplex.com/">ClosedXML</a> library (which itself is a wrapper around Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK)</a>.<br>
                 </li>
                 <li><strong>ListItem array</strong>. This adapter produces a ListItem array for populating ASP.NET's DropDownList controls or Windows's ComboBox. </li>
-                </ul><p>Should you need some other output type, it's easy to write your own output adapters by implementing a simple interface that Walter provides.</p>
+                </ul>
+                <p></p><p>Should you need some other output type, it's easy to write your own output adapters by implementing a simple interface that Walter provides.</p>
                 <p>The next several sections provide overviews of using Walter with several of its outputs. 
 
                 <hr>

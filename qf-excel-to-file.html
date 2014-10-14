@@ -99,8 +99,9 @@
 <!-- Content starts here -->
             <div id="qf-excel-to-file" class="content section">
               <h2>Export to Excel</h2>
-              <p>This example shows how to use Walter to create an Excel spreadsheet and save it to a local file. Another example shows how to produce an Excel spreadsheet from an ASP.NET app.</p>
-
+              <p>This example shows how to use Walter to create an Excel spreadsheet in a Windows program and save it to a local file. The next section shows how to use Walter to produce an Excel spreadsheet from an ASP.NET app. </p>
+              <p>Walter's Excel output adapter uses the open source <a href="https://closedxml.codeplex.com/">ClosedXML library</a>, which provides a rational API over Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK for Office.</a>. I chose the ClosedXML library because it is an active project, has the features Walter needed, and has pretty good documentation. There are many alternatives for writing Excel spreadsheets in the .NET environment. If, for whatever reason, Walter's Excel output adapter doesn't suit you, write your own!</p>
+              <p>Walter's default Excel output adapter accepts two meta options (through Walter's Inputs.Options collection) to specify the spreadsheet heading and the worksheet name. Through clever use of the Inputs.Options collection a scheme could probably be produced to specify to the Excel output adapter to create column and row total formulas. This has been on my todo list for months. Alas, that's why Walter is open source! Help please!</p> 
                 <pre><code>01  Using ASNA.Helpers.DataServices
 02  
 03  DclFld db           Type(AdgConnection)
@@ -116,7 +117,7 @@
                                     CMADDR1:Address,CMCITY:City,CMSTATE:State"
 13  Query.Args.Inputs.Rows       = 1000
 14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
+15  Query.Args.Inputs.QueryParms.Add(*New QueryField("CMSTATE",State))
 16
 17  Query.Args.Inputs.Options.Add("heading","Customer Listing")
 18  Query.Args.Inputs.Options.Add("worksheet_name","Customers")
@@ -195,7 +196,7 @@
                 </tr>
                 <tr>
                 <td>15</td>
-                <td>The QueryFields collection provides the field values for the Query property. In this example, the replacement token {CMSTATE} is replaced by the value in the State variable at runtime. For example, if the State variable value is 'IN' then the query in line 14 resolves to CMSTATE = 'IN' at runtime. Each field used in the query must be represented by a corresponding field in the QueryFields collection. </td>
+                <td>The QueryParms collection provides the field values for the Query property. In this example, the replacement token {CMSTATE} is replaced by the value in the State variable at runtime. For example, if the State variable value is 'IN' then the query in line 14 resolves to CMSTATE = 'IN' at runtime. Each field used in the query must be represented by a corresponding field in the QueryFields collection. </td>
                 </tr>
                 <tr>
                 <td>17</td>

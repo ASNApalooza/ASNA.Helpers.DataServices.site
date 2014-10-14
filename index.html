@@ -113,9 +113,9 @@
               <!-- </div> -->
               <!-- <div class="col-sm-9"> -->
                 <p class="lead">In the Big Lebowski, Walter Sobchak was The Dude's faithful sidekick. This library
-                is intended to be a faithful sidekick for your AVR projects. The name Walter is also a nod 
-                to one of ASNA's resident geniuses, Walter Goodwin. Walter's quiet, steady presence has 
-                had a huge influence on all that we do with AVR for many years. </p>
+                is intended to be a faithful sidekick for your AVR projects. Walter's specialty is in executing 
+                dynamic, declarative queries that produce read-only lists in a variety of formats for your AVR for .NET 
+                applications.</p>
                 <p class="lead">Let's see what Walter can do for you.
             </div>
 
@@ -124,16 +124,49 @@
               <h2>Walter overview</h2>
                 <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. While Walter is intended primarily for ASNA Visual RPG, it would also work just fine with VB.NET or C#. 
 
-                <p>Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
+                <p>Walter implements a declarative programming model that makes is easy to fetch dynamic query results with a minimal of effort and with high performance. When used against the IBM i, Walter consistently produces output with
+                subsecond response times (usually less than 250 milliseconds). It takes about 1-15 lines of code to configure Walter and produce output with it. Part of the reason I wrote Walter is that I got tired of needing to create an endless supply of custom classes for reading data and producing that data in a variety of formats.</p>
+
+                <p>Some of Walter's design goals are:
+                <ul>
+                <li>Allow runtime configuration of queries, including library, file, fields, selection criteria, and sort
+                order with a declarative, logic-free syntax. You only need to tell Walter what you want, you don't need
+                tell how it how to get it.</li>
+                <li>Provide dynamic, performant query capabilities independent of the availability of explicit access paths 
+                provided by logical files. Walter works with the local ASNA DataBase, but really shines when used with the 
+                IBM i. On the IBM i, Walter puts OpenQueryFile to good use. Walter also works with ASNA's DataGate for 
+                SQL Server, but has been tested the least there so far.</li>
+                <li>Provide built-in, key-driven paging support. When used against logical files with a known key 
+                structure, Walter provides built in forward paging. You don't have to manage "next" key values and Walter
+                tells you when the last page has been read.</li>  
+                <li>Support several standard output types but also provide an plug-in model so that additional output
+                types can easily be added later. Walter's default output type is a System.Data.DataTable, but it includes
+                output adapters to produce an array of ListItems (for populating drop-down lists in Windows and Web
+                applications), Excel spreadsheets (in native XLSX format), and Json for client-side JavaScript use. </li>
+                <li>Allow a common way to pass query meta data into Walter's output adapters. This allows each output
+                adapter a measure of customization. For example, Walter's Excel output adapter uses this meta data 
+                to provide a spreadsheet heading and the worksheet name.</li>
+                <li>Provide robust error handling so trouble-shooting is easy.</li>
+                <li>Allow for the easy aliasing of field names so that, for example, when producing an Excel spreadsheet
+                user-friendly column names are available.</li> 
+                <li>Be usable by any .NET application type. Walter works with Windows, ASP.NET and Web services and can be coded
+                in AVR, VB.NET, C# or even JavaScript. Walter makes a great partner for extending ASNA Wings, Monarch and 
+                even Mobile RPG applications. Walter can be used directly to create department-level projects or it can be used as a primitive in the creation of more robust database repository class libraries (where it could be tapped to produce lists for those libaries). Walter has a sister project, ASNA.Helpers.ASPNET that provides helper facilities
+                for using Walter in ASP.NET applications.</li>
+                <li>Provide an interactive query tester for creating and testing queries and generating the AVR, C#, or even
+                JavaScript. </li>
+                <li>Be formally open sourced so that others can easily extend, enhance, and bugfix Walter.</li>
+                </p>
 
                 <p>Walter's query output is driven by output adapters. The default output adapter emits query output as a DataTable. The DataTable can be bound to most Windows and ASP.NET controls (including Windows' DataGridView and ASP.NET's GridView). Walter also includes output adapters to emit query results as: </p>
 
                 <ul class="task-list">
-                <li>  <strong>Json</strong>. Walter's Json output can be used in a variety of ways including feeding a JavaScript autocomplete widget (such as jQuery UI's <a href="http://jqueryui.com/autocomplete/">AutoComplete</a>) or feeding a client grid such as the jQuery DataTable grid. Walter includes an HTTP handler to make its Json output easy to use with ASP.NET. A small JavaScript wrapper for the jQuery UI AutoComplete widget is included. Using Walter and its components make it very easy to add AutoComplete to your ASP.NET pages (including Wings and Monarch pages). </li>
-                <li>  <strong>Excel</strong>. Walter's Excel adapter produces Excel spreadsheets (in XSLX format) on either Windows Web servers or Windows clients, without needing Excel installed. This adapter uses the <a href="https://closedxml.codeplex.com/">ClosedXM</a> library (which itself is a wrapper around MIcrosoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK</a>.<br>
+                <li><strong>Json</strong>. Walter's Json output can be used in a variety of ways including feeding a JavaScript autocomplete widget (such as jQuery UI's <a href="http://jqueryui.com/autocomplete/">AutoComplete</a>) or feeding a client grid such as the jQuery DataTable grid. Walter includes an HTTP handler to make its Json output easy to use with ASP.NET. A small JavaScript wrapper for the jQuery UI AutoComplete widget is included. Using Walter and its components make it very easy to add AutoComplete to your ASP.NET pages (including Wings and Monarch pages). </li>
+                <li><strong>Excel</strong>. Walter's Excel adapter produces Excel spreadsheets (in XSLX format) on either Windows Web servers or Windows clients, without needing Excel installed. This adapter uses the <a href="https://closedxml.codeplex.com/">ClosedXML</a> library (which itself is a wrapper around Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK)</a>.<br>
                 </li>
                 <li><strong>ListItem array</strong>. This adapter produces a ListItem array for populating ASP.NET's DropDownList controls or Windows's ComboBox. </li>
-                </ul><p>Should you need some other output type, it's easy to write your own output adapters by implementing a simple interface that Walter provides.</p>
+                </ul>
+                <p></p><p>Should you need some other output type, it's easy to write your own output adapters by implementing a simple interface that Walter provides.</p>
                 <p>The next several sections provide overviews of using Walter with several of its outputs. 
 
                 <hr>
@@ -143,7 +176,8 @@
 <!-- Begin: qf-export-to-datatable.html -->
             <div id="qf-export-to-datatable" class="content section">
               <h2>Export to DataTable</h2>
-              <p>This example shows how to use Walter to export query results to a DataTable. This code could be used in either Windows or ASP.NET to bind data to a grid or other control. Exporting to a DataTable uses Walter's default output adapter so no explicit output adapter instancing is required. 
+              <p>This example shows how to use Walter to export query results to a DataTable. This code could be used in either Windows or ASP.NET to bind data to a grid or other control. Exporting to a DataTable uses Walter's default output adapter so you'll notice that no explicit output adapter instancing is required. You'll see that later with the other output adapters.</p>
+              <p>The code annotation that follows provides a little more detail than the other code annotations do. It would be redundant to repeat this level of detail for each of the other output adapters. Don't let the concept of output adapters seem too mysterious. An output adapter is just a class that implements a simple interface. Output adapters get passed a DataTable by Walter's query engine and it's the output adapter's job to translate that incoming DataTable into something else. Walter's default output adapter emits a datatable&mdash;and as you can probably guess, it didn't take much code to produce this output adapter. It simply delivers the internal DataTable. More on output adapter internals later. Let's dig into how to use the default DataTable output adapter.</p> 
 
                 <pre><code>01  Using ASNA.Helpers.DataServices
 02  
@@ -157,13 +191,12 @@
 10  Query.Args.Inputs.File       = "CMastNewL2"
 11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
 12  Query.Args.Inputs.Rows       = 1000
-13  Query.Args.Inputs.QueryType  = QueryType.Simple
-14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
-16  
-17  grid.DataSource = Query.Exec() *As DataTable
-18
-19 db.Close()</code></pre>
+13  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+14  Query.Args.Inputs.QueryParms.Add(*New QueryField("CMSTATE",State))
+15  
+16  grid.DataSource = Query.Exec() *As DataTable
+17
+18 db.Close()</code></pre>
 
 
 <div class="panel-group" id="accordion">
@@ -184,58 +217,54 @@
                 </tr>
                 <tr>
                 <td>01</td>
-                <td>Make the QueryDriver, QueryField, and QueryType objects available without needing to qualify them with their namespace.</td>
+                <td>Most of Walter lives in the ASNA.Helpers.DataServices namespace. This using statement makes Walter's QueryDriver, QueryField, and QueryType objects available without needing to qualify them with their namespace.</td>
                 </tr>
                 <tr>
                 <td>03</td>
-                <td>Declare a DataGate DB connection. This is the core DB connection used by AVR's DclDB. Both DB connections participate in DataGate connection pooling and they both use the same Database Name scheme.</td>
+                <td>Declare a DataGate DB connection. This is the core DB connection used by AVR's DclDB. Both DB connections participate in DataGate connection pooling and they both use the same Database Name scheme. This DB connection must be instanced before Walter's QueryDriver is instanced.</td>
                 </tr>
                 <tr>
                 <td>04</td>
-                <td>Declare an instance of the QueryDriver. This is Walter's core query object.</td>
+                <td>The QueryDriver is Walter's traffic cop&mdash;all of Walter's goodness flows through it.When you look at its source code, you'll see there really isn't much to the QueryDriver, it's mostly a convenience class to make it easy to stitch together the class instances that Walter needs. Most of what Walter needs is surfaced through the Query Driver. Its constructor needs to be passed an instanced (but not necessarily connected) DataGate DB connection</td>
                 </tr>
                 <tr>
                 <td>06</td>
-                <td>Instance the database connection.</td>
+                <td>Instance the database connection with an ASNA DataGate database name.</td>
                 </tr>
                 <tr>
                 <td>08</td>
-                <td>Instance the QueryFile object.</td>
+                <td>The QueryDriver surfaces a layered set of classes that provides access to Walter's inputs, outputs, and error information. (In retrospect I regret aspects of this layered design and wish I had done something else. That's what I get for coding first and designing second!.) The QueryDriver receives all of its inputs through its Args.Inputs class. You'll later see that by flowing all inputs through the Args class provides another interesting way of instancing Walter (hint: if you serialize the Args.Inputs class to Json, you can easily "hydrate" an instance of Walter by via Json serialization. More on this later.) This line instance the QueryFile object which under the covers instances its Arg.Inputs class&mdash;ready to accept query inputs.</td>
                 </tr>
                 <tr>
                 <td>09</td>
-                <td>Specify the library for the query.</td>
+                <td>Specify the library for the query. This can be either a library name or the special value, *LIBL.</td>
                 </tr>
                 <tr>
                 <td>10</td>
-                <td>Specify the file name name for the query.</td>
+                <td>Specify the file name name for the query. Just a reminder, remember these values are specified at runtime. Unlike the tradition use of AVR's DclDiskFile, Walter has no knowledge of the file you want to use at compile time. (Note: a glaring omision in Walter surfaces itself here: Walter lacks the ability to specify a member name. Walter currently works only with the first member. This is one of the first things to add to Walter after ASNApalooza!).</td>
                 </tr>
                 <tr>
                 <td>11</td>
-                <td>Specify the fields from the file to return. The DataTable column names will also be the field names provided here.</td>
+                <td>Specify the fields from the file to return. This is a case-insensitive comma-separated list of field names. Each field name specified must exist in the record format. For basic uses, this list is used as it is shown here. But an alternative syntax is comma-separated list of fieldnames and column aliases. For example, in this list: "CMCUSTNO:Number, CMNAME:Name, CMADDR1:Address" the field name is provided first then a column and the field alias. The use of the field alias is adapter-specific. For example, Walter's Excel output adapter uses field aliases for column names and its Json output adapter uses field aliases to name the field in the resulting Json. Field aliases aren't used by the default DataTable output adapter. The simple delimited field list is that adapter needs. The resulting datatable will include only the field columns specified in this list. Note that even if you don't need the field in the resulting output, if a field is used in the query definition (line 13 below), it <em>must</em> be included in this list.</td>
                 </tr>
                 <tr>
                 <td>12</td>
-                <td>Specify the maximum number of rows for the query to return.</td>
+                <td>Specify the maximum number of rows for the query to return. A value of -1 means to return all rows that match query specs. Be careful using this option&mdash;it's probably not prudent to try to bind 100,000 rows to the ASP.NET grid or </td>
                 </tr>
-                <tr>
+               <tr>
                 <td>13</td>
-                <td>Specify that this is a simple query. This is the default query and it needs a query specified.</td>
+                <td>Specify the query. This can use AND and OR statements and it specifies tokens that are replaced at runtime within braces. This parameterized query is resolved with values from the QueryParms. <em>Every</em> field in this query <em>must</em> be included in the following QueryParms collection. Note: Watch the placement of the single apostrophes carefully. This query follows open query file rules and for character values the apostrophes are necessary. As a tease, consider this: because Walter's queries are executed on the IBM i through Open Query File, advanced query facilities such as translation tables (for case insensitive searches), 'contains' searches (eg, any address with the word "Avenue" in it), range queries, and wild card queries are possible when Walter is used against the IBM i. Walter surfaces some pretty amazing, and surprising fast, query capabilities.</td>
                 </tr>
                 <tr>
                 <td>14</td>
-                <td>Specify the query. This can use AND and OR statements and it specifies tokens that are replaced at runtime. See the next line for more info.</td>
+                <td>The QueryParms collection provides the field values for the replaceable tokens specified in the Query property. In this example, the replacement token {CMSTATE} is replaced by the value in the State variable at runtime. For example, if the State variable value is 'IN' then the query in line 14 resolves to CMSTATE = 'IN' at runtime. Each field used in the query must be represented by a corresponding field in the QueryParms collection. </td>
                 </tr>
                 <tr>
-                <td>15</td>
-                <td>The QueryFields collection provides the field values for the Query property. In this example, the replacement token {CMSTATE} is replaced by the value in the State variable at runtime. For example, if the State variable value is 'IN' then the query in line 14 resolves to CMSTATE = 'IN' at runtime. Each field used in the query must be represented by a corresponding field in the QueryFields collection. </td>
+                <td>16</td>
+                <td>Call the QueryDriver's Exec() method to execute its query. The default output adapter returns a DataTable and (because other adapters can return other types) the return value from the adapter in use <em>must</em> be cast appropriately. With Walter having produced the DataTable, you can now do anything with it you want. In many cases, it will be bound to either a Windows or ASP.NET grid control.</td>
                 </tr>
                 <tr>
-                <td>17</td>
-                <td>Call the QueryDriver's Exec() method to execute its query. The default output adapter returns a DataTable and (because other adapters can return other types) the return value from the adapter in use must be cast appropriately.</td>
-                </tr>
-                <tr>
-                <td>19</td>
+                <td>18</td>
                 <td>Close the underlying database server connection. This should always be done after you use Walter's QueryDriver's Exec() method. This connection does participate in connection pooling so there is very little overhead in reconnecting.  </td>
                 </tr>
                 </table>
@@ -243,10 +272,6 @@
       </div><!-- panel-collapse collapse -->
     </div><!-- panel -->
 </div><!-- panel group -->
-
-<p>Walter uses an ASNA.DataGate.Client.AdgConnection. This connection object uses the same DataBaseName-driven scheme that AVR's DCLDB object uses. Walter DB connections interoperates with AVR's DCLDB database connection pooling. As a general rule you should always close Walter's database connection immediately after executing the QueryDriver's Exec() method.</p>
-
-
                 <hr>
             </div>
 <!-- End: qf-export-to-datatable.html -->
@@ -254,8 +279,9 @@
 <!-- Begin: qf-excel-to-file.html -->
             <div id="qf-excel-to-file" class="content section">
               <h2>Export to Excel</h2>
-              <p>This example shows how to use Walter to create an Excel spreadsheet and save it to a local file. Another example shows how to produce an Excel spreadsheet from an ASP.NET app.</p>
-
+              <p>This example shows how to use Walter to create an Excel spreadsheet in a Windows program and save it to a local file. The next section shows how to use Walter to produce an Excel spreadsheet from an ASP.NET app. </p>
+              <p>Walter's Excel output adapter uses the open source <a href="https://closedxml.codeplex.com/">ClosedXML library</a>, which provides a rational API over Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK for Office.</a>. I chose the ClosedXML library because it is an active project, has the features Walter needed, and has pretty good documentation. There are many alternatives for writing Excel spreadsheets in the .NET environment. If, for whatever reason, Walter's Excel output adapter doesn't suit you, write your own!</p>
+              <p>Walter's default Excel output adapter accepts two meta options (through Walter's Inputs.Options collection) to specify the spreadsheet heading and the worksheet name. Through clever use of the Inputs.Options collection a scheme could probably be produced to specify to the Excel output adapter to create column and row total formulas. This has been on my todo list for months. Alas, that's why Walter is open source! Help please!</p> 
                 <pre><code>01  Using ASNA.Helpers.DataServices
 02  
 03  DclFld db           Type(AdgConnection)
@@ -271,7 +297,7 @@
                                     CMADDR1:Address,CMCITY:City,CMSTATE:State"
 13  Query.Args.Inputs.Rows       = 1000
 14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
+15  Query.Args.Inputs.QueryParms.Add(*New QueryField("CMSTATE",State))
 16
 17  Query.Args.Inputs.Options.Add("heading","Customer Listing")
 18  Query.Args.Inputs.Options.Add("worksheet_name","Customers")
@@ -350,7 +376,7 @@
                 </tr>
                 <tr>
                 <td>15</td>
-                <td>The QueryFields collection provides the field values for the Query property. In this example, the replacement token {CMSTATE} is replaced by the value in the State variable at runtime. For example, if the State variable value is 'IN' then the query in line 14 resolves to CMSTATE = 'IN' at runtime. Each field used in the query must be represented by a corresponding field in the QueryFields collection. </td>
+                <td>The QueryParms collection provides the field values for the Query property. In this example, the replacement token {CMSTATE} is replaced by the value in the State variable at runtime. For example, if the State variable value is 'IN' then the query in line 14 resolves to CMSTATE = 'IN' at runtime. Each field used in the query must be represented by a corresponding field in the QueryFields collection. </td>
                 </tr>
                 <tr>
                 <td>17</td>
