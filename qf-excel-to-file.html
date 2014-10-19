@@ -99,9 +99,9 @@
 <!-- Content starts here -->
             <div id="qf-excel-to-file" class="content section">
               <h2>Export to Excel</h2>
-              <p>This example shows how to use Walter to create an Excel spreadsheet in a Windows program and save it to a local file. The next section shows how to use Walter to produce an Excel spreadsheet from an ASP.NET app. </p>
-              <p>Walter's Excel output adapter uses the open source <a href="https://closedxml.codeplex.com/">ClosedXML library</a>, which provides a rational API over Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK for Office.</a>. I chose the ClosedXML library because it is an active project, has the features Walter needed, and has pretty good documentation. There are many alternatives for writing Excel spreadsheets in the .NET environment. If, for whatever reason, Walter's Excel output adapter doesn't suit you, write your own!</p>
-              <p>Walter's default Excel output adapter accepts two meta options (through Walter's Inputs.Options collection) to specify the spreadsheet heading and the worksheet name. Through clever use of the Inputs.Options collection a scheme could probably be produced to specify to the Excel output adapter to create column and row total formulas. This has been on my todo list for months. Alas, that's why Walter is open source! Help please!</p> 
+              <p>This example shows how to use Walter to create an Excel spreadsheet in a Windows program and save it to a local file. A later section shows how you can use Walter to produce an Excel spreadsheet in an ASP.NET app. </p>
+              <p>Walter's Excel output adapter uses the open source <a href="https://closedxml.codeplex.com/">ClosedXML library</a>, which provides a rational API over Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK for Office.</a>. I chose the ClosedXML library because it is an active project, has the features Walter needed, and has pretty good documentation. There are many alternatives for writing Excel spreadsheets in the .NET environment. If Walter's Excel output adapter doesn't suit you, write your own!</p>
+              <p>Walter's default Excel output adapter accepts two query options (through Walter's Inputs.Options collection) to specify the spreadsheet heading and the worksheet name. Through clever use of the Inputs.Options collection a scheme could probably be produced to specify to the Excel output adapter to create column and row total formulas. This has been on my todo list for months. Alas, that's why Walter is open source! Help please!</p> 
                 <pre><code>01  Using ASNA.Helpers.DataServices
 02  
 03  DclFld db           Type(AdgConnection)
@@ -151,15 +151,15 @@
                 </tr>
                 <tr>
                 <td>03</td>
-                <td>Declare a DataGate DB connection. This is the core DB connection used by AVR's DclDB. Both DB connections participate in DataGate connection pooling and they both use the same Database Name scheme.</td>
+                <td>Declare a DataGate DB connection. </td>
                 </tr>
                 <tr>
                 <td>04</td>
-                <td>Declare an instance of the QueryDriver. This is Walter's core query object.</td>
+                <td>Declare an instance of the QueryDriver. </td>
                 </tr>
                 <tr>
                 <td>05</td>
-                <td>Declare an instance of the standard Excel output adapter.</td>
+                <td>Declare an instance of the standard Excel output adapter. Note that it isn't instanced when you declare it--we'll instance it in a moment.</td>
                 </tr> 
                 <tr>
                 <td>07</td>
@@ -179,40 +179,35 @@
                 </tr>
                 <tr>
                 <td>12</td>
-                <td>Specify the file name name for the query. This is a comma-separated list of fields. Each field in the list can also include an alias preceded by a colon. The standard 
-                 Excel output adapter uses these alias for column headings. </td>
+                <td>Specify a comma separated list of fields to include in the query results. In addition to the field name, you can also provide (preceded by a comma) a field name alias. The use of this alias is specific to an output adapter. The Excel output adapter uses these field aliases for column headings in the spreadsheet. For example, The CMCUSTNO field will have a column heading of "Number."</td>
                 </tr>
                 <tr>
                 <td>13</td>
-                <td>Specify the maximum number of rows for the query to return.</td>
+                <td>Specify the maximum number of rows for the query to return. Be especially careful with this value when using the Excel output adapter. The entire spreadsheet is created in memory before it is produced.</td>
                 </tr>
                 <tr>
                 <td>14</td>
-                <td>Specify that this is a simple query. This is the default query and it needs a query specified.</td>
+                <td>Specify the query.</td>
                 </tr>
                 <tr>
                 <td>15</td>
-                <td>Specify the query. This can use AND and OR statements and it specifies tokens that are replaced at runtime. See the next line for more info.</td>
-                </tr>
-                <tr>
-                <td>15</td>
-                <td>The QueryParms collection provides the field values for the Query property. In this example, the replacement token {CMSTATE} is replaced by the value in the State variable at runtime. For example, if the State variable value is 'IN' then the query in line 14 resolves to CMSTATE = 'IN' at runtime. Each field used in the query must be represented by a corresponding field in the QueryFields collection. </td>
+                <td>The QueryParms collection provides the field values for the Query property. In this example, the replacement token {CMSTATE} is replaced by the value in the State variable (not declared in this code snippet) at runtime. For example, if the State variable value is 'IN' then the query in line 14 resolves to CMSTATE = 'IN' at runtime. Each field used in the query must be represented by a corresponding field in the QueryFields collection. </td>
                 </tr>
                 <tr>
                 <td>17</td>
-                <td>Specify the spreadsheet heading. The use of the Options dictionary is specific to the output adapter. See each adapter's documentation for the options it supports.</td>
+                <td>Specify query options. The use of query options is specific to the output adapter being used. The Excel output adapter uses two options. This option defines the heading used in the spreadsheet. </td>
                 </tr>
                 <tr>
                 <td>18</td>
-                <td>Specify the spreadhseet worksheet name.</td>
+                <td>This query option specifies the spreadhseet worksheet name. If either the 'heading' or 'worksheet_name' options are omitted when using the Excel output adapter, default values are used.</td>
                 </tr>
                 <tr>
                 <td>20</td>
-                <td>Instance the standard Excel output adapter.</td>
+                <td>Instance the standard Excel output adapter. Most output adapters require the Query.Args instance as the only constructor argument. This makes the input args available to adapter. How the adapter may use those values is specific to a given output adapter.</td>
                 </tr>
                 <tr>
                 <td>21</td>
-                <td>Override the output adapter with the newly instanced Excel adapter.</td>
+                <td>Override the output adapter with the newly instanced Excel adapter. When the output adapter is overridden no other query results are generated--query results are always passed out of Walter through a single query adapter. For example, having overridden the output adapter with the Excel output adapter the query will not generate a data table.</td>
                 </tr>
                 <tr>
                 <td>22</td>
@@ -220,12 +215,11 @@
                 </tr>
                 <tr>
                 <td>23</td>
-                <td>Use the standard Excel output adapter's SaveToLocalFile() method to save the 
-                spreadsheet created.</td>
+                <td>Close the underlying database server connection. This should always be done after you use Walter's QueryFile.Exec() method. This connection does participate in connection pooling so there is very little overhead in reconnecting.  </td>
                 </tr>
                 <tr>
                 <td>24</td>
-                <td>Close the underlying database server connection. This should always be done after you use Walter's QueryFile.Exec() method. This connection does participate in connection pooling so there is very little overhead in reconnecting.  </td>
+                <td>Use the standard Excel output adapter's SaveToLocalFile() method to save the spreadsheet created. This option is only valid for use with Windows applications. Walter also has an ASP.NET helper class that can use the Excel output adapter in an ASP.NET app.</td>
                 </tr>
                 </table>
             </div> <!-- .panel-body -->

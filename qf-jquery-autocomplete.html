@@ -8,12 +8,13 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="favicon.ico">
 
-    <title>Walter</title>
+    <title>Documentation Template</title>
 
     <!-- Bootstrap core CSS -->
     <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"> -->
     <link href="public/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/css/index.css" rel="stylesheet">
+
 
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -25,7 +26,6 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-
 .content {padding-top: 80px ;padding-bottom: 20px}
 
 @media (min-width:768px){
@@ -40,9 +40,12 @@
   #components .list-group {position: fixed; width:14%;}
 }
 
+
 @media (min-width:1920px){
   #components .list-group {position: fixed; width:14%;}
 }
+
+
     </style>
 
   </head>
@@ -70,7 +73,6 @@
     </div>
 
     <div class="content container tab-content">
-
       <div class="tab-pane active" id="home">
         <div class="jumbotron">
           <h1>Some Framework</h1>
@@ -84,64 +86,135 @@
           <div class="col-sm-3">
             <div class="list-group">
               <a href="#qf-overview" class="list-group-item">Overview</a>
-              <a href="#qf-export-to-datatable" class="list-group-item">Export to DataTable</a>
-              <a href="#qf-excel-to-file" class="list-group-item">Export to Excel file</a>
-              <a href="#qf-export-to-json" class="list-group-item">Export to Json</a>
-              <a href="#qf-export-to-listitem" class="list-group-item">Export to ListItem array</a>
-              <a href="#qf-query-tester" class="list-group-item">Query Tester</a>
-              <a href="#qf-jquery-autocomplete" class="list-group-item">jQuery AutoComplete</a>
-              <a href="#qf-jquery-datatable" class="list-group-item">jQuery DataTable</a>
-              <a href="#qf-walter-web" class="list-group-item">Walter Web Example</a>
-              <a href="#qf-walter-windows" class="list-group-item">Walter Windows Example</a>
-              <a href="#qf-query-syntax" class="list-group-item">Walter Query Syntax</a>
-
-
+              <a href="#qf-instance-args" class="list-group-item">QueryFileInstanceArgs</a>
+              <a href="#item3" class="list-group-item">Item #3</a>
+              <a href="#item4" class="list-group-item">Item #4</a>
+              <a href="#item5" class="list-group-item">Item #5</a>
             </div>
           </div><!-- /.col-sm-3 -->
 
           <div class="col-sm-9">
-            <div class="clearfix">
-               <h1>What is Walter?</h1>
-              <!-- <div class="col-sm-3"> -->
-                <div class="pull-left thumbnail  space-right">
-                  <img src="public/images/walter.png"/>
-                  <div class="text-center">
-                    <a class="black" href="http://www.joshuabudich.com/"><small>Image by Joshua Budich</small></a>
-                  </div>
-                </div>
-              <!-- </div> -->
-              <!-- <div class="col-sm-9"> -->
-                <p class="lead">In the Big Lebowski, Walter Sobchak was The Dude's faithful sidekick. This library
-                is intended to be a faithful sidekick for your AVR projects. Walter's specialty is in executing 
-                dynamic, declarative queries that produce read-only lists in a variety of formats for your AVR for .NET 
-                applications.</p>
-                <p class="lead">Let's see what Walter can do for you.
+            <!-- Item #1. -->
+<!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+<!-- Content starts here -->
+            <div id="qf-jquery-autocomplete" class="content section">
+              <h2>jQuery AutoComplete</h2>
+                <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
+
+                <pre><code>01  Using ASNA.Helpers.DataServices
+02  
+03  DclFld db     Type(AdgConnection)
+04  DclFld Query  Type(QueryDriver) 
+05  
+06  db = *New AdgConnection("*Public/IBMi") 
+07  
+08  Query = *New QueryDriver(db)
+09  Query.Args.Inputs.Library    = "examples"
+10  Query.Args.Inputs.File       = "CMastNewL2"
+11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
+12  Query.Args.Inputs.Rows       = 1000
+13  Query.Args.Inputs.QueryType  = QueryType.Simple
+14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
+16  
+17  grid.DataSource = Query.Exec() *As DataTable</code></pre>
+
+                <p>Here is a brief explanation of the lines above:</p>
+
+                <table class="table table-striped">
+                <tr>
+                <th>Line</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>01</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>02</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>03</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>04</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>05</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>06</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>07</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>08</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>09</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>10</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>11</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>12</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>13</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>14</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>15</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>16</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>17</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>18</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>19</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>20</td>
+                <td></td>
+                </tr>
+                </table>
+                <hr>
             </div>
-
-/copy qf_overview.html  
-/copy qf-export-to-datatable.html
-/copy qf-excel-to-file.html  
-/copy qf-export-to-json.html
-/copy qf-export-to-listitem.html
-/copy qf-query-tester.html
-/copy qf-jquery-autocomplete.html
-/copy qf-jquery-datatable.html
-/copy qf-walter-web.html
-/copy qf-walter-windows.html
-/copy qf-query-syntax.html
-
-          </div><!-- /.col-sm-9 -->
+<!-- Content ends here -->
+<!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+          </div>
         </div>
-
-      </div> <!-- .components -->
-
-      <div class="tab-pane" id="about">
-        <h1>About</h1>
-        <p class="lead">This section is for about and resources.</p>
-      </div>      
-
+      </div>
     </div><!-- /.container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -153,12 +226,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="public/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<!--
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
--->
     <script>
-
       /* scroll to top when clicked on navbar */
       $(".navbar > .container").on("click", function(e){
         $('html,body').animate({scrollTop:0},'slow');

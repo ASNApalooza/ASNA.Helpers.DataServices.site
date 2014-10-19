@@ -15,8 +15,6 @@
     <link href="public/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/css/index.css" rel="stylesheet">
 
-
-
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -114,7 +112,7 @@
 11 Query.Args.Inputs.Library    = "examples
 12 Query.Args.Inputs.File       = "States"
 13 Query.Args.Inputs.FieldsList = "State:text,Abbrev:value"
-14 Query.Args.Inputs.Rows       = 1000
+14 Query.Args.Inputs.Rows       = -1
 15 Query.Args.Inputs.Query      = "STATE >= 'A'"
 16 Query.Args.Inputs.QueryFields.Add(*New ASNA.Helpers.DataServices.QueryField("STATE",""))
 17
@@ -150,7 +148,7 @@
                 </tr>
                 <tr>
                 <td>04</td>
-                <td>Declare a DataGate DB connection. This is the core DB connection used by AVR's DclDB. Both DB connections participate in DataGate connection pooling and they both use the same Database Name scheme.</td>
+                <td>Declare a DataGate DB connection.</td>
                 </tr>
                 <tr>
                 <td>05</td>
@@ -185,7 +183,7 @@
                 </tr>
                 <tr>
                 <td>14</td>
-                <td>Specify the maximum number of rows for the query to return.</td>
+                <td>Specify the maximum number of rows for the query to return. -1 means return all of the rows that satisfy the query.</td>
                 </tr>
                 <tr>
                 <td>15</td>

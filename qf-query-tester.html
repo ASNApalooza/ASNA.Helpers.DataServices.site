@@ -8,12 +8,13 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="favicon.ico">
 
-    <title>Walter</title>
+    <title>Documentation Template</title>
 
     <!-- Bootstrap core CSS -->
     <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"> -->
     <link href="public/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/css/index.css" rel="stylesheet">
+
 
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -25,7 +26,6 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-
 .content {padding-top: 80px ;padding-bottom: 20px}
 
 @media (min-width:768px){
@@ -40,9 +40,12 @@
   #components .list-group {position: fixed; width:14%;}
 }
 
+
 @media (min-width:1920px){
   #components .list-group {position: fixed; width:14%;}
 }
+
+
     </style>
 
   </head>
@@ -70,7 +73,6 @@
     </div>
 
     <div class="content container tab-content">
-
       <div class="tab-pane active" id="home">
         <div class="jumbotron">
           <h1>Some Framework</h1>
@@ -84,64 +86,29 @@
           <div class="col-sm-3">
             <div class="list-group">
               <a href="#qf-overview" class="list-group-item">Overview</a>
-              <a href="#qf-export-to-datatable" class="list-group-item">Export to DataTable</a>
-              <a href="#qf-excel-to-file" class="list-group-item">Export to Excel file</a>
-              <a href="#qf-export-to-json" class="list-group-item">Export to Json</a>
-              <a href="#qf-export-to-listitem" class="list-group-item">Export to ListItem array</a>
-              <a href="#qf-query-tester" class="list-group-item">Query Tester</a>
-              <a href="#qf-jquery-autocomplete" class="list-group-item">jQuery AutoComplete</a>
-              <a href="#qf-jquery-datatable" class="list-group-item">jQuery DataTable</a>
-              <a href="#qf-walter-web" class="list-group-item">Walter Web Example</a>
-              <a href="#qf-walter-windows" class="list-group-item">Walter Windows Example</a>
-              <a href="#qf-query-syntax" class="list-group-item">Walter Query Syntax</a>
-
-
+              <a href="#qf-instance-args" class="list-group-item">QueryFileInstanceArgs</a>
+              <a href="#item3" class="list-group-item">Item #3</a>
+              <a href="#item4" class="list-group-item">Item #4</a>
+              <a href="#item5" class="list-group-item">Item #5</a>
             </div>
           </div><!-- /.col-sm-3 -->
 
           <div class="col-sm-9">
-            <div class="clearfix">
-               <h1>What is Walter?</h1>
-              <!-- <div class="col-sm-3"> -->
-                <div class="pull-left thumbnail  space-right">
-                  <img src="public/images/walter.png"/>
-                  <div class="text-center">
-                    <a class="black" href="http://www.joshuabudich.com/"><small>Image by Joshua Budich</small></a>
-                  </div>
-                </div>
-              <!-- </div> -->
-              <!-- <div class="col-sm-9"> -->
-                <p class="lead">In the Big Lebowski, Walter Sobchak was The Dude's faithful sidekick. This library
-                is intended to be a faithful sidekick for your AVR projects. Walter's specialty is in executing 
-                dynamic, declarative queries that produce read-only lists in a variety of formats for your AVR for .NET 
-                applications.</p>
-                <p class="lead">Let's see what Walter can do for you.
-            </div>
+            <!-- Item #1. -->
+<!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+<!-- Content starts here -->
+            <div id="qf-query-tester" class="content section">
+              <h2>Query Tester</h2>
+                <p>The Query Tester is a Windows program that you can use to interactive test Walter queries. With a query defined, you can see its various outputs and the code (in either AVR, C#, or JavaScript) that you can copy to put the query in your appliation. The Query Test limits query parameters, order by fields, and query options to three each. This is a Query Tester limitation&mdash;Walter allows as many of each as you need.</p>
 
-/copy qf_overview.html  
-/copy qf-export-to-datatable.html
-/copy qf-excel-to-file.html  
-/copy qf-export-to-json.html
-/copy qf-export-to-listitem.html
-/copy qf-query-tester.html
-/copy qf-jquery-autocomplete.html
-/copy qf-jquery-datatable.html
-/copy qf-walter-web.html
-/copy qf-walter-windows.html
-/copy qf-query-syntax.html
+<img src="Walter-query-entry-screen.png"/>
 
-          </div><!-- /.col-sm-9 -->
+<!-- Content ends here -->
+<!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+          </div>
         </div>
-
-      </div> <!-- .components -->
-
-      <div class="tab-pane" id="about">
-        <h1>About</h1>
-        <p class="lead">This section is for about and resources.</p>
-      </div>      
-
+      </div>
     </div><!-- /.container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -153,12 +120,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="public/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<!--
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
--->
     <script>
-
       /* scroll to top when clicked on navbar */
       $(".navbar > .container").on("click", function(e){
         $('html,body').animate({scrollTop:0},'slow');

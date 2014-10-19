@@ -100,7 +100,7 @@
             <div id="qf-export-to-datatable" class="content section">
               <h2>Export to DataTable</h2>
               <p>This example shows how to use Walter to export query results to a DataTable. This code could be used in either Windows or ASP.NET to bind data to a grid or other control. Exporting to a DataTable uses Walter's default output adapter so you'll notice that no explicit output adapter instancing is required. You'll see that later with the other output adapters.</p>
-              <p>The code annotation that follows provides a little more detail than the other code annotations do. It would be redundant to repeat this level of detail for each of the other output adapters. Don't let the concept of output adapters seem too mysterious. An output adapter is just a class that implements a simple interface. Output adapters get passed a DataTable by Walter's query engine and it's the output adapter's job to translate that incoming DataTable into something else. Walter's default output adapter emits a datatable&mdash;and as you can probably guess, it didn't take much code to produce this output adapter. It simply delivers the internal DataTable. More on output adapter internals later. Let's dig into how to use the default DataTable output adapter.</p> 
+              <p>Don't let the concept of output adapters seem too mysterious. An output adapter is just a class that implements a simple interface. Output adapters get passed a DataTable by Walter's query engine and it's the output adapter's job to translate that incoming DataTable into something else. Walter's default output adapter emits a datatable&mdash;and as you can probably guess, it didn't take much code to produce this output adapter. It simply delivers the internal DataTable. More on output adapter internals later. Let's dig into how to use the default DataTable output adapter.</p> 
 
                 <pre><code>01  Using ASNA.Helpers.DataServices
 02  
@@ -168,7 +168,7 @@
                 </tr>
                 <tr>
                 <td>11</td>
-                <td>Specify the fields from the file to return. This is a case-insensitive comma-separated list of field names. Each field name specified must exist in the record format. For basic uses, this list is used as it is shown here. But an alternative syntax is comma-separated list of fieldnames and column aliases. For example, in this list: "CMCUSTNO:Number, CMNAME:Name, CMADDR1:Address" the field name is provided first then a column and the field alias. The use of the field alias is adapter-specific. For example, Walter's Excel output adapter uses field aliases for column names and its Json output adapter uses field aliases to name the field in the resulting Json. Field aliases aren't used by the default DataTable output adapter. The simple delimited field list is that adapter needs. The resulting datatable will include only the field columns specified in this list. Note that even if you don't need the field in the resulting output, if a field is used in the query definition (line 13 below), it <em>must</em> be included in this list.</td>
+                <td><a name="location-fieldslist"></a>Specify a comma separated list of fields to include in the query results. This is a case-insensitive comma-separated list of field names. Each field name specified must exist in the record format. For basic uses, this list is used as it is shown here. But an alternative syntax is comma-separated list of fieldnames and column aliases. For example, in this list: "CMCUSTNO:Number, CMNAME:Name, CMADDR1:Address" the field name is provided first then a column and the field alias. The use of the field alias is adapter-specific. For example, Walter's Excel output adapter uses field aliases for column names and its Json output adapter uses field aliases to name the field in the resulting Json. Field aliases aren't used by the default DataTable output adapter. The simple delimited field list is that adapter needs. The resulting datatable will include only the field columns specified in this list. Note that even if you don't need the field in the resulting output, if a field is used in the query definition (line 13 below), it <em>must</em> be included in this list.</td>
                 </tr>
                 <tr>
                 <td>12</td>
@@ -195,6 +195,8 @@
       </div><!-- panel-collapse collapse -->
     </div><!-- panel -->
 </div><!-- panel group -->
+
+Queries are independent of their output format so the same core query used to explain the DataTable output adapter will be used to explain the output adapters. The discussion on other output adapters will focus on how the adapters redirect output. Later in this document we'll drill deeper into more details about Walter's query capabilities. 
                 <hr>
             </div>
 <!-- Content ends here -->

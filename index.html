@@ -86,17 +86,16 @@
               <a href="#qf-overview" class="list-group-item">Overview</a>
               <a href="#qf-export-to-datatable" class="list-group-item">Export to DataTable</a>
               <a href="#qf-excel-to-file" class="list-group-item">Export to Excel file</a>
+              <a href="#qf-export-to-json" class="list-group-item">Export to Json</a>
               <a href="#qf-export-to-listitem" class="list-group-item">Export to ListItem array</a>
-              <a href="#item3" class="list-group-item">Item #3</a>
-              <a href="#item4" class="list-group-item">Item #4</a>
-              <a href="#item5" class="list-group-item">Item #5</a>
-              <a href="#item6" class="list-group-item">Item #6</a>
-              <a href="#item7" class="list-group-item">Item #7</a>
-              <a href="#item8" class="list-group-item">Item #8</a>
-              <a href="#item9" class="list-group-item">Item #9</a>
-              <a href="#item10" class="list-group-item">Item #10</a>
-              <a href="#item11" class="list-group-item">Item #11</a>
-              <a href="#item12" class="list-group-item">Item #12</a>
+              <a href="#qf-query-tester" class="list-group-item">Query Tester</a>
+              <a href="#qf-jquery-autocomplete" class="list-group-item">jQuery AutoComplete</a>
+              <a href="#qf-jquery-datatable" class="list-group-item">jQuery DataTable</a>
+              <a href="#qf-walter-web" class="list-group-item">Walter Web Example</a>
+              <a href="#qf-walter-windows" class="list-group-item">Walter Windows Example</a>
+              <a href="#qf-query-syntax" class="list-group-item">Walter Query Syntax</a>
+
+
             </div>
           </div><!-- /.col-sm-3 -->
 
@@ -172,12 +171,11 @@
                 <hr>
             </div>
 <!-- End: qf_overview.html -->
-
 <!-- Begin: qf-export-to-datatable.html -->
             <div id="qf-export-to-datatable" class="content section">
               <h2>Export to DataTable</h2>
               <p>This example shows how to use Walter to export query results to a DataTable. This code could be used in either Windows or ASP.NET to bind data to a grid or other control. Exporting to a DataTable uses Walter's default output adapter so you'll notice that no explicit output adapter instancing is required. You'll see that later with the other output adapters.</p>
-              <p>The code annotation that follows provides a little more detail than the other code annotations do. It would be redundant to repeat this level of detail for each of the other output adapters. Don't let the concept of output adapters seem too mysterious. An output adapter is just a class that implements a simple interface. Output adapters get passed a DataTable by Walter's query engine and it's the output adapter's job to translate that incoming DataTable into something else. Walter's default output adapter emits a datatable&mdash;and as you can probably guess, it didn't take much code to produce this output adapter. It simply delivers the internal DataTable. More on output adapter internals later. Let's dig into how to use the default DataTable output adapter.</p> 
+              <p>Don't let the concept of output adapters seem too mysterious. An output adapter is just a class that implements a simple interface. Output adapters get passed a DataTable by Walter's query engine and it's the output adapter's job to translate that incoming DataTable into something else. Walter's default output adapter emits a datatable&mdash;and as you can probably guess, it didn't take much code to produce this output adapter. It simply delivers the internal DataTable. More on output adapter internals later. Let's dig into how to use the default DataTable output adapter.</p> 
 
                 <pre><code>01  Using ASNA.Helpers.DataServices
 02  
@@ -245,7 +243,7 @@
                 </tr>
                 <tr>
                 <td>11</td>
-                <td>Specify the fields from the file to return. This is a case-insensitive comma-separated list of field names. Each field name specified must exist in the record format. For basic uses, this list is used as it is shown here. But an alternative syntax is comma-separated list of fieldnames and column aliases. For example, in this list: "CMCUSTNO:Number, CMNAME:Name, CMADDR1:Address" the field name is provided first then a column and the field alias. The use of the field alias is adapter-specific. For example, Walter's Excel output adapter uses field aliases for column names and its Json output adapter uses field aliases to name the field in the resulting Json. Field aliases aren't used by the default DataTable output adapter. The simple delimited field list is that adapter needs. The resulting datatable will include only the field columns specified in this list. Note that even if you don't need the field in the resulting output, if a field is used in the query definition (line 13 below), it <em>must</em> be included in this list.</td>
+                <td><a name="location-fieldslist"></a>Specify a comma separated list of fields to include in the query results. This is a case-insensitive comma-separated list of field names. Each field name specified must exist in the record format. For basic uses, this list is used as it is shown here. But an alternative syntax is comma-separated list of fieldnames and column aliases. For example, in this list: "CMCUSTNO:Number, CMNAME:Name, CMADDR1:Address" the field name is provided first then a column and the field alias. The use of the field alias is adapter-specific. For example, Walter's Excel output adapter uses field aliases for column names and its Json output adapter uses field aliases to name the field in the resulting Json. Field aliases aren't used by the default DataTable output adapter. The simple delimited field list is that adapter needs. The resulting datatable will include only the field columns specified in this list. Note that even if you don't need the field in the resulting output, if a field is used in the query definition (line 13 below), it <em>must</em> be included in this list.</td>
                 </tr>
                 <tr>
                 <td>12</td>
@@ -272,16 +270,17 @@
       </div><!-- panel-collapse collapse -->
     </div><!-- panel -->
 </div><!-- panel group -->
+
+Queries are independent of their output format so the same core query used to explain the DataTable output adapter will be used to explain the output adapters. The discussion on other output adapters will focus on how the adapters redirect output. Later in this document we'll drill deeper into more details about Walter's query capabilities. 
                 <hr>
             </div>
 <!-- End: qf-export-to-datatable.html -->
-
 <!-- Begin: qf-excel-to-file.html -->
             <div id="qf-excel-to-file" class="content section">
               <h2>Export to Excel</h2>
-              <p>This example shows how to use Walter to create an Excel spreadsheet in a Windows program and save it to a local file. The next section shows how to use Walter to produce an Excel spreadsheet from an ASP.NET app. </p>
-              <p>Walter's Excel output adapter uses the open source <a href="https://closedxml.codeplex.com/">ClosedXML library</a>, which provides a rational API over Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK for Office.</a>. I chose the ClosedXML library because it is an active project, has the features Walter needed, and has pretty good documentation. There are many alternatives for writing Excel spreadsheets in the .NET environment. If, for whatever reason, Walter's Excel output adapter doesn't suit you, write your own!</p>
-              <p>Walter's default Excel output adapter accepts two meta options (through Walter's Inputs.Options collection) to specify the spreadsheet heading and the worksheet name. Through clever use of the Inputs.Options collection a scheme could probably be produced to specify to the Excel output adapter to create column and row total formulas. This has been on my todo list for months. Alas, that's why Walter is open source! Help please!</p> 
+              <p>This example shows how to use Walter to create an Excel spreadsheet in a Windows program and save it to a local file. A later section shows how you can use Walter to produce an Excel spreadsheet in an ASP.NET app. </p>
+              <p>Walter's Excel output adapter uses the open source <a href="https://closedxml.codeplex.com/">ClosedXML library</a>, which provides a rational API over Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK for Office.</a>. I chose the ClosedXML library because it is an active project, has the features Walter needed, and has pretty good documentation. There are many alternatives for writing Excel spreadsheets in the .NET environment. If Walter's Excel output adapter doesn't suit you, write your own!</p>
+              <p>Walter's default Excel output adapter accepts two query options (through Walter's Inputs.Options collection) to specify the spreadsheet heading and the worksheet name. Through clever use of the Inputs.Options collection a scheme could probably be produced to specify to the Excel output adapter to create column and row total formulas. This has been on my todo list for months. Alas, that's why Walter is open source! Help please!</p> 
                 <pre><code>01  Using ASNA.Helpers.DataServices
 02  
 03  DclFld db           Type(AdgConnection)
@@ -331,15 +330,15 @@
                 </tr>
                 <tr>
                 <td>03</td>
-                <td>Declare a DataGate DB connection. This is the core DB connection used by AVR's DclDB. Both DB connections participate in DataGate connection pooling and they both use the same Database Name scheme.</td>
+                <td>Declare a DataGate DB connection. </td>
                 </tr>
                 <tr>
                 <td>04</td>
-                <td>Declare an instance of the QueryDriver. This is Walter's core query object.</td>
+                <td>Declare an instance of the QueryDriver. </td>
                 </tr>
                 <tr>
                 <td>05</td>
-                <td>Declare an instance of the standard Excel output adapter.</td>
+                <td>Declare an instance of the standard Excel output adapter. Note that it isn't instanced when you declare it--we'll instance it in a moment.</td>
                 </tr> 
                 <tr>
                 <td>07</td>
@@ -359,40 +358,35 @@
                 </tr>
                 <tr>
                 <td>12</td>
-                <td>Specify the file name name for the query. This is a comma-separated list of fields. Each field in the list can also include an alias preceded by a colon. The standard 
-                 Excel output adapter uses these alias for column headings. </td>
+                <td>Specify a comma separated list of fields to include in the query results. In addition to the field name, you can also provide (preceded by a comma) a field name alias. The use of this alias is specific to an output adapter. The Excel output adapter uses these field aliases for column headings in the spreadsheet. For example, The CMCUSTNO field will have a column heading of "Number."</td>
                 </tr>
                 <tr>
                 <td>13</td>
-                <td>Specify the maximum number of rows for the query to return.</td>
+                <td>Specify the maximum number of rows for the query to return. Be especially careful with this value when using the Excel output adapter. The entire spreadsheet is created in memory before it is produced.</td>
                 </tr>
                 <tr>
                 <td>14</td>
-                <td>Specify that this is a simple query. This is the default query and it needs a query specified.</td>
+                <td>Specify the query.</td>
                 </tr>
                 <tr>
                 <td>15</td>
-                <td>Specify the query. This can use AND and OR statements and it specifies tokens that are replaced at runtime. See the next line for more info.</td>
-                </tr>
-                <tr>
-                <td>15</td>
-                <td>The QueryParms collection provides the field values for the Query property. In this example, the replacement token {CMSTATE} is replaced by the value in the State variable at runtime. For example, if the State variable value is 'IN' then the query in line 14 resolves to CMSTATE = 'IN' at runtime. Each field used in the query must be represented by a corresponding field in the QueryFields collection. </td>
+                <td>The QueryParms collection provides the field values for the Query property. In this example, the replacement token {CMSTATE} is replaced by the value in the State variable (not declared in this code snippet) at runtime. For example, if the State variable value is 'IN' then the query in line 14 resolves to CMSTATE = 'IN' at runtime. Each field used in the query must be represented by a corresponding field in the QueryFields collection. </td>
                 </tr>
                 <tr>
                 <td>17</td>
-                <td>Specify the spreadsheet heading. The use of the Options dictionary is specific to the output adapter. See each adapter's documentation for the options it supports.</td>
+                <td>Specify query options. The use of query options is specific to the output adapter being used. The Excel output adapter uses two options. This option defines the heading used in the spreadsheet. </td>
                 </tr>
                 <tr>
                 <td>18</td>
-                <td>Specify the spreadhseet worksheet name.</td>
+                <td>This query option specifies the spreadhseet worksheet name. If either the 'heading' or 'worksheet_name' options are omitted when using the Excel output adapter, default values are used.</td>
                 </tr>
                 <tr>
                 <td>20</td>
-                <td>Instance the standard Excel output adapter.</td>
+                <td>Instance the standard Excel output adapter. Most output adapters require the Query.Args instance as the only constructor argument. This makes the input args available to adapter. How the adapter may use those values is specific to a given output adapter.</td>
                 </tr>
                 <tr>
                 <td>21</td>
-                <td>Override the output adapter with the newly instanced Excel adapter.</td>
+                <td>Override the output adapter with the newly instanced Excel adapter. When the output adapter is overridden no other query results are generated--query results are always passed out of Walter through a single query adapter. For example, having overridden the output adapter with the Excel output adapter the query will not generate a data table.</td>
                 </tr>
                 <tr>
                 <td>22</td>
@@ -400,12 +394,11 @@
                 </tr>
                 <tr>
                 <td>23</td>
-                <td>Use the standard Excel output adapter's SaveToLocalFile() method to save the 
-                spreadsheet created.</td>
+                <td>Close the underlying database server connection. This should always be done after you use Walter's QueryFile.Exec() method. This connection does participate in connection pooling so there is very little overhead in reconnecting.  </td>
                 </tr>
                 <tr>
                 <td>24</td>
-                <td>Close the underlying database server connection. This should always be done after you use Walter's QueryFile.Exec() method. This connection does participate in connection pooling so there is very little overhead in reconnecting.  </td>
+                <td>Use the standard Excel output adapter's SaveToLocalFile() method to save the spreadsheet created. This option is only valid for use with Windows applications. Walter also has an ASP.NET helper class that can use the Excel output adapter in an ASP.NET app.</td>
                 </tr>
                 </table>
             </div> <!-- .panel-body -->
@@ -421,7 +414,102 @@
                 <hr>
             </div>
 <!-- End: qf-excel-to-file.html -->
+<!-- Begin: qf-export-to-json.html -->
+            <div id="qf-export-to-json" class="content section">
+              <h2>Export to Json</h2>
+                <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
 
+                <pre><code>01  Using ASNA.Helpers.DataServices
+02  
+03  DclFld db     Type(AdgConnection)
+04  DclFld Query  Type(QueryDriver) 
+05  DclFld Json   Type(*String)
+06  
+07  db = *New AdgConnection("*Public/IBMi") 
+08  
+09  Query = *New QueryDriver(db)
+10  Query.Args.Inputs.Library    = "examples"
+11  Query.Args.Inputs.File       = "CMastNewL2"
+12  Query.Args.Inputs.FieldsList = "CMCUSTNO:number,CMNAME:name,CMSTATE:state"
+13  Query.Args.Inputs.Rows       = -1
+14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
+16
+17  Query.OverrideAdapter(*New ASNA.Helpers.DataServices.ToJsonAdapter(Query.Args)) 
+18  
+19  Json = Query.Exec() *As *String</code></pre>
+
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#qf-export-to-json-collapse">
+          Toggle source code annotation
+        </a>
+      </h4>
+    </div>
+    <div id="qf-export-to-json-collapse" class="panel-collapse collapse">
+      <div class="panel-body">
+                <table class="table table-striped">
+                <tr>
+                <th>Line</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>01-15</td>
+                <td>Line 5 declares a string variable named "Json" to receive Walter's resulting Json. Otherwise lines 1-15 are the same as 
+                as the other output types.</td>
+                </tr>
+                <tr>
+                <td>17</td>
+                <td>Override Walter's default output adapter with its standard Json adapter. This Json output adapter uses the field aliases
+                 specified on line 12 to name the data keys in the Json (more on this in a moment).</td>
+                </tr>
+                <tr>
+                <tr>
+                <td>19</td>
+                <td>Produce the Json.</td>
+                </tr>
+                </table>
+            </div> <!-- .panel-body -->
+      </div><!-- panel-collapse collapse -->
+    </div><!-- panel -->
+</div><!-- panel group -->
+
+A sample of Walter's Json is shown below. Note that each field is identified by the keys specified with the field alises in Line 12 of the code above. The "list" node in the Json is the Json list. The other nodes are informational meta data about the query that might come in handy. This query meta will be discussed in more detail later. 
+<br/><br/>
+<pre><code>{
+  "resultRowCount": 4,
+  "totalRowCount": 995,
+  "rowCountPhrase": "4 of ~995",
+  "milliseconds": "41",
+  "list": [
+    {
+      "number": "11200",
+      "name": "Marley Services Cooperative Blue Tech",
+      "state": "IN"
+    },
+    {
+      "number": "5400",
+      "name": "Red Laboratories Inc Computer Inc",
+      "state": "IN"
+    },
+    {
+      "number": "10300",
+      "name": "Howard Corporation Consulting Assoc Inc",
+      "state": "IN"
+    },
+    {
+      "number": "40400",
+      "name": "Port Inc Systems Agents Associates",
+      "state": "IN"
+    }
+  ],
+  "startingKey": [],
+  "endingKey": []
+}</code></pre>
+<!-- End: qf-export-to-json.html -->
 <!-- Begin: qf-export-to-listitem.html -->
             <div id="qf-export-to-listitem" class="content section">
               <h2>Export to ListItem array</h2>
@@ -440,7 +528,7 @@
 11 Query.Args.Inputs.Library    = "examples
 12 Query.Args.Inputs.File       = "States"
 13 Query.Args.Inputs.FieldsList = "State:text,Abbrev:value"
-14 Query.Args.Inputs.Rows       = 1000
+14 Query.Args.Inputs.Rows       = -1
 15 Query.Args.Inputs.Query      = "STATE >= 'A'"
 16 Query.Args.Inputs.QueryFields.Add(*New ASNA.Helpers.DataServices.QueryField("STATE",""))
 17
@@ -476,7 +564,7 @@
                 </tr>
                 <tr>
                 <td>04</td>
-                <td>Declare a DataGate DB connection. This is the core DB connection used by AVR's DclDB. Both DB connections participate in DataGate connection pooling and they both use the same Database Name scheme.</td>
+                <td>Declare a DataGate DB connection.</td>
                 </tr>
                 <tr>
                 <td>05</td>
@@ -511,7 +599,7 @@
                 </tr>
                 <tr>
                 <td>14</td>
-                <td>Specify the maximum number of rows for the query to return.</td>
+                <td>Specify the maximum number of rows for the query to return. -1 means return all of the rows that satisfy the query.</td>
                 </tr>
                 <tr>
                 <td>15</td>
@@ -567,66 +655,584 @@ EndSr</code></pre>
 </div><!-- content section-->
 
 <!-- End: qf-export-to-listitem.html -->
+<!-- Begin: qf-query-tester.html -->
+            <div id="qf-query-tester" class="content section">
+              <h2>Query Tester</h2>
+                <p>The Query Tester is a Windows program that you can use to interactive test Walter queries. With a query defined, you can see its various outputs and the code (in either AVR, C#, or JavaScript) that you can copy to put the query in your appliation.</p>
 
-            <!-- Item #3. -->
-            <div id="item3" class="content section">
-              <h3>Item #3</h3>
-              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
-            </div>
+<img src="Walter-query-entry-screen.png"/>
 
-            <!-- Item 4. -->
-            <div id="item4" class="content section">
-              <h3>Item #4</h3>
-              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
-            </div>
+<!-- End: qf-query-tester.html -->
+<!-- Begin: qf-jquery-autocomplete.html -->
+            <div id="qf-jquery-autocomplete" class="content section">
+              <h2>jQuery AutoComplete</h2>
+                <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
 
-            <!-- Item 5. -->
-            <div id="item5" class="content section">
-              <h3>Item #5</h3>
-              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
-            </div>
+                <pre><code>01  Using ASNA.Helpers.DataServices
+02  
+03  DclFld db     Type(AdgConnection)
+04  DclFld Query  Type(QueryDriver) 
+05  
+06  db = *New AdgConnection("*Public/IBMi") 
+07  
+08  Query = *New QueryDriver(db)
+09  Query.Args.Inputs.Library    = "examples"
+10  Query.Args.Inputs.File       = "CMastNewL2"
+11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
+12  Query.Args.Inputs.Rows       = 1000
+13  Query.Args.Inputs.QueryType  = QueryType.Simple
+14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
+16  
+17  grid.DataSource = Query.Exec() *As DataTable</code></pre>
 
-            <!-- Item 6. -->
-            <div id="item6" class="content section">
-              <h3>Item #6</h3>
-              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
-            </div>
+                <p>Here is a brief explanation of the lines above:</p>
 
-            <!-- Item 7. -->
-            <div id="item7" class="content section">
-              <h3>Item #7</h3>
-              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
+                <table class="table table-striped">
+                <tr>
+                <th>Line</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>01</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>02</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>03</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>04</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>05</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>06</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>07</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>08</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>09</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>10</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>11</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>12</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>13</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>14</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>15</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>16</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>17</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>18</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>19</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>20</td>
+                <td></td>
+                </tr>
+                </table>
+                <hr>
             </div>
+<!-- End: qf-jquery-autocomplete.html -->
+<!-- Begin: qf-jquery-datatable.html -->
+            <div id="qf-jquery-datatable" class="content section">
+              <h2>jQuery DataTable</h2>
+                <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
 
-            <!-- Item 8. -->
-            <div id="item8" class="content section">
-              <h3>Item #8</h3>
-              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
-            </div>
+                <pre><code>01  Using ASNA.Helpers.DataServices
+02  
+03  DclFld db     Type(AdgConnection)
+04  DclFld Query  Type(QueryDriver) 
+05  
+06  db = *New AdgConnection("*Public/IBMi") 
+07  
+08  Query = *New QueryDriver(db)
+09  Query.Args.Inputs.Library    = "examples"
+10  Query.Args.Inputs.File       = "CMastNewL2"
+11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
+12  Query.Args.Inputs.Rows       = 1000
+13  Query.Args.Inputs.QueryType  = QueryType.Simple
+14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
+16  
+17  grid.DataSource = Query.Exec() *As DataTable</code></pre>
 
-            <!-- Item 9. -->
-            <div id="item9" class="content section">
-              <h3>Item #9</h3>
-              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
-            </div>
+                <p>Here is a brief explanation of the lines above:</p>
 
-            <!-- Item 10. -->
-            <div id="item10" class="content section">
-              <h3>Item #10</h3>
-              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
+                <table class="table table-striped">
+                <tr>
+                <th>Line</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>01</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>02</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>03</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>04</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>05</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>06</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>07</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>08</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>09</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>10</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>11</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>12</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>13</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>14</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>15</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>16</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>17</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>18</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>19</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>20</td>
+                <td></td>
+                </tr>
+                </table>
+                <hr>
             </div>
+<!-- End: qf-jquery-datatable.html -->
+<!-- Begin: qf-walter-web.html -->
+            <div id="qf-walter-web" class="content section">
+              <h2>Walter Web example</h2>
+                <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
 
-            <!-- Item 11. -->
-            <div id="item11" class="content section">
-              <h3>Item #11</h3>
-              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
-            </div>
+                <pre><code>01  Using ASNA.Helpers.DataServices
+02  
+03  DclFld db     Type(AdgConnection)
+04  DclFld Query  Type(QueryDriver) 
+05  
+06  db = *New AdgConnection("*Public/IBMi") 
+07  
+08  Query = *New QueryDriver(db)
+09  Query.Args.Inputs.Library    = "examples"
+10  Query.Args.Inputs.File       = "CMastNewL2"
+11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
+12  Query.Args.Inputs.Rows       = 1000
+13  Query.Args.Inputs.QueryType  = QueryType.Simple
+14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
+16  
+17  grid.DataSource = Query.Exec() *As DataTable</code></pre>
 
-            <!-- Item 12. -->
-            <div id="item12" class="content section">
-              <h3>Item #12</h3>
-              <p>This is a section, add any HTML here. Below is an example of code block and table that can be used to describe components.</p>
+                <p>Here is a brief explanation of the lines above:</p>
+
+                <table class="table table-striped">
+                <tr>
+                <th>Line</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>01</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>02</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>03</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>04</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>05</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>06</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>07</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>08</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>09</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>10</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>11</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>12</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>13</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>14</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>15</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>16</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>17</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>18</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>19</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>20</td>
+                <td></td>
+                </tr>
+                </table>
+                <hr>
             </div>
+<!-- End: qf-walter-web.html -->
+<!-- Begin: qf-walter-windows.html -->
+            <div id="qf-walter-windows" class="content section">
+              <h2>Walter Windows example</h2>
+                <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
+
+                <pre><code>01  Using ASNA.Helpers.DataServices
+02  
+03  DclFld db     Type(AdgConnection)
+04  DclFld Query  Type(QueryDriver) 
+05  
+06  db = *New AdgConnection("*Public/IBMi") 
+07  
+08  Query = *New QueryDriver(db)
+09  Query.Args.Inputs.Library    = "examples"
+10  Query.Args.Inputs.File       = "CMastNewL2"
+11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
+12  Query.Args.Inputs.Rows       = 1000
+13  Query.Args.Inputs.QueryType  = QueryType.Simple
+14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
+16  
+17  grid.DataSource = Query.Exec() *As DataTable</code></pre>
+
+                <p>Here is a brief explanation of the lines above:</p>
+
+                <table class="table table-striped">
+                <tr>
+                <th>Line</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>01</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>02</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>03</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>04</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>05</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>06</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>07</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>08</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>09</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>10</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>11</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>12</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>13</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>14</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>15</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>16</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>17</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>18</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>19</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>20</td>
+                <td></td>
+                </tr>
+                </table>
+                <hr>
+            </div>
+<!-- End: qf-walter-windows.html -->
+<!-- Begin: qf-query-syntax.html -->
+            <div id="qf-query-syntax" class="content section">
+              <h2>Query Syntax</h2>
+                <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
+
+                <pre><code>01  Using ASNA.Helpers.DataServices
+02  
+03  DclFld db     Type(AdgConnection)
+04  DclFld Query  Type(QueryDriver) 
+05  
+06  db = *New AdgConnection("*Public/IBMi") 
+07  
+08  Query = *New QueryDriver(db)
+09  Query.Args.Inputs.Library    = "examples"
+10  Query.Args.Inputs.File       = "CMastNewL2"
+11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
+12  Query.Args.Inputs.Rows       = 1000
+13  Query.Args.Inputs.QueryType  = QueryType.Simple
+14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
+16  
+17  grid.DataSource = Query.Exec() *As DataTable</code></pre>
+
+                <p>Here is a brief explanation of the lines above:</p>
+
+                <table class="table table-striped">
+                <tr>
+                <th>Line</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>01</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>02</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>03</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>04</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>05</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>06</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>07</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>08</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>09</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>10</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>11</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>12</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>13</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>14</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>15</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>16</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>17</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>18</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>19</td>
+                <td></td>
+                </tr>
+                <tr>
+                <td>20</td>
+                <td></td>
+                </tr>
+                </table>
+                <hr>
+            </div>
+<!-- End: qf-query-syntax.html -->
 
           </div><!-- /.col-sm-9 -->
         </div>
