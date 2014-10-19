@@ -58,12 +58,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Home</a>
+          <!-- <a class="navbar-brand" href="#">Home</a> -->
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" id="tabs">
             <li><a href="#components" data-toggle="tab">Documentation</a></li>
-            <li><a href="#about" data-toggle="tab">About</a></li>
+            <!-- <li><a href="#about" data-toggle="tab">About</a></li> -->
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -658,580 +658,40 @@ EndSr</code></pre>
 <!-- Begin: qf-query-tester.html -->
             <div id="qf-query-tester" class="content section">
               <h2>Query Tester</h2>
-                <p>The Query Tester is a Windows program that you can use to interactive test Walter queries. With a query defined, you can see its various outputs and the code (in either AVR, C#, or JavaScript) that you can copy to put the query in your appliation.</p>
+                <p>The Query Tester is a Windows program that you can use to interactive test Walter queries. With a query defined, you can see its various outputs and the code (in either AVR, C#, or JavaScript) that you can copy to put the query in your appliation. The Query Test limits query parameters, order by fields, and query options to three each. This is a Query Tester limitation&mdash;Walter allows as many of each as you need.</p>
 
 <img src="Walter-query-entry-screen.png"/>
+
+<br/><br/>
+<p><a href="https://github.com/ASNApalooza/Walter.Query.Tester">Query Tester on GitHub</a></p>
+<p><a href="https://github.com/ASNApalooza/Walter.Query.Tester/archive/master.zip">Query Tester direct zip download from GitHub</a></p>
+
 
 <!-- End: qf-query-tester.html -->
 <!-- Begin: qf-jquery-autocomplete.html -->
             <div id="qf-jquery-autocomplete" class="content section">
               <h2>jQuery AutoComplete</h2>
-                <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
-
-                <pre><code>01  Using ASNA.Helpers.DataServices
-02  
-03  DclFld db     Type(AdgConnection)
-04  DclFld Query  Type(QueryDriver) 
-05  
-06  db = *New AdgConnection("*Public/IBMi") 
-07  
-08  Query = *New QueryDriver(db)
-09  Query.Args.Inputs.Library    = "examples"
-10  Query.Args.Inputs.File       = "CMastNewL2"
-11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
-12  Query.Args.Inputs.Rows       = 1000
-13  Query.Args.Inputs.QueryType  = QueryType.Simple
-14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
-16  
-17  grid.DataSource = Query.Exec() *As DataTable</code></pre>
-
-                <p>Here is a brief explanation of the lines above:</p>
-
-                <table class="table table-striped">
-                <tr>
-                <th>Line</th>
-                <th>Description</th>
-                </tr>
-                <tr>
-                <td>01</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>02</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>03</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>04</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>05</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>06</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>07</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>08</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>09</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>10</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>11</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>12</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>13</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>14</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>15</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>16</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>17</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>18</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>19</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>20</td>
-                <td></td>
-                </tr>
-                </table>
-                <hr>
-            </div>
+                <p></p>
 <!-- End: qf-jquery-autocomplete.html -->
 <!-- Begin: qf-jquery-datatable.html -->
             <div id="qf-jquery-datatable" class="content section">
               <h2>jQuery DataTable</h2>
-                <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
-
-                <pre><code>01  Using ASNA.Helpers.DataServices
-02  
-03  DclFld db     Type(AdgConnection)
-04  DclFld Query  Type(QueryDriver) 
-05  
-06  db = *New AdgConnection("*Public/IBMi") 
-07  
-08  Query = *New QueryDriver(db)
-09  Query.Args.Inputs.Library    = "examples"
-10  Query.Args.Inputs.File       = "CMastNewL2"
-11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
-12  Query.Args.Inputs.Rows       = 1000
-13  Query.Args.Inputs.QueryType  = QueryType.Simple
-14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
-16  
-17  grid.DataSource = Query.Exec() *As DataTable</code></pre>
-
-                <p>Here is a brief explanation of the lines above:</p>
-
-                <table class="table table-striped">
-                <tr>
-                <th>Line</th>
-                <th>Description</th>
-                </tr>
-                <tr>
-                <td>01</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>02</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>03</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>04</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>05</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>06</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>07</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>08</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>09</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>10</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>11</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>12</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>13</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>14</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>15</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>16</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>17</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>18</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>19</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>20</td>
-                <td></td>
-                </tr>
-                </table>
-                <hr>
-            </div>
+                <p></p>
 <!-- End: qf-jquery-datatable.html -->
 <!-- Begin: qf-walter-web.html -->
             <div id="qf-walter-web" class="content section">
               <h2>Walter Web example</h2>
-                <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
-
-                <pre><code>01  Using ASNA.Helpers.DataServices
-02  
-03  DclFld db     Type(AdgConnection)
-04  DclFld Query  Type(QueryDriver) 
-05  
-06  db = *New AdgConnection("*Public/IBMi") 
-07  
-08  Query = *New QueryDriver(db)
-09  Query.Args.Inputs.Library    = "examples"
-10  Query.Args.Inputs.File       = "CMastNewL2"
-11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
-12  Query.Args.Inputs.Rows       = 1000
-13  Query.Args.Inputs.QueryType  = QueryType.Simple
-14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
-16  
-17  grid.DataSource = Query.Exec() *As DataTable</code></pre>
-
-                <p>Here is a brief explanation of the lines above:</p>
-
-                <table class="table table-striped">
-                <tr>
-                <th>Line</th>
-                <th>Description</th>
-                </tr>
-                <tr>
-                <td>01</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>02</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>03</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>04</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>05</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>06</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>07</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>08</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>09</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>10</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>11</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>12</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>13</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>14</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>15</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>16</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>17</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>18</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>19</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>20</td>
-                <td></td>
-                </tr>
-                </table>
-                <hr>
-            </div>
+                <p></p>
 <!-- End: qf-walter-web.html -->
 <!-- Begin: qf-walter-windows.html -->
             <div id="qf-walter-windows" class="content section">
               <h2>Walter Windows example</h2>
-                <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
-
-                <pre><code>01  Using ASNA.Helpers.DataServices
-02  
-03  DclFld db     Type(AdgConnection)
-04  DclFld Query  Type(QueryDriver) 
-05  
-06  db = *New AdgConnection("*Public/IBMi") 
-07  
-08  Query = *New QueryDriver(db)
-09  Query.Args.Inputs.Library    = "examples"
-10  Query.Args.Inputs.File       = "CMastNewL2"
-11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
-12  Query.Args.Inputs.Rows       = 1000
-13  Query.Args.Inputs.QueryType  = QueryType.Simple
-14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
-16  
-17  grid.DataSource = Query.Exec() *As DataTable</code></pre>
-
-                <p>Here is a brief explanation of the lines above:</p>
-
-                <table class="table table-striped">
-                <tr>
-                <th>Line</th>
-                <th>Description</th>
-                </tr>
-                <tr>
-                <td>01</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>02</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>03</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>04</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>05</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>06</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>07</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>08</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>09</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>10</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>11</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>12</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>13</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>14</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>15</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>16</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>17</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>18</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>19</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>20</td>
-                <td></td>
-                </tr>
-                </table>
-                <hr>
-            </div>
+                <p></p>
 <!-- End: qf-walter-windows.html -->
 <!-- Begin: qf-query-syntax.html -->
             <div id="qf-query-syntax" class="content section">
               <h2>Query Syntax</h2>
-                <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
-
-                <pre><code>01  Using ASNA.Helpers.DataServices
-02  
-03  DclFld db     Type(AdgConnection)
-04  DclFld Query  Type(QueryDriver) 
-05  
-06  db = *New AdgConnection("*Public/IBMi") 
-07  
-08  Query = *New QueryDriver(db)
-09  Query.Args.Inputs.Library    = "examples"
-10  Query.Args.Inputs.File       = "CMastNewL2"
-11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
-12  Query.Args.Inputs.Rows       = 1000
-13  Query.Args.Inputs.QueryType  = QueryType.Simple
-14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
-16  
-17  grid.DataSource = Query.Exec() *As DataTable</code></pre>
-
-                <p>Here is a brief explanation of the lines above:</p>
-
-                <table class="table table-striped">
-                <tr>
-                <th>Line</th>
-                <th>Description</th>
-                </tr>
-                <tr>
-                <td>01</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>02</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>03</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>04</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>05</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>06</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>07</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>08</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>09</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>10</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>11</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>12</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>13</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>14</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>15</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>16</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>17</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>18</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>19</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>20</td>
-                <td></td>
-                </tr>
-                </table>
-                <hr>
-            </div>
+                <p></p>
 <!-- End: qf-query-syntax.html -->
 
           </div><!-- /.col-sm-9 -->
@@ -1239,11 +699,11 @@ EndSr</code></pre>
 
       </div> <!-- .components -->
 
-      <div class="tab-pane" id="about">
+<!--       <div class="tab-pane" id="about">
         <h1>About</h1>
         <p class="lead">This section is for about and resources.</p>
       </div>      
-
+ -->
     </div><!-- /.container -->
 
 
