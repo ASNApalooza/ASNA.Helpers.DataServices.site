@@ -14,6 +14,8 @@
     <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"> -->
     <link href="public/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/css/index.css" rel="stylesheet">
+    <link href="public/css/prettify.css" rel="stylesheet">
+    <link href="public/magnific-popup/magnific-popup.css" rel="stylesheet">
 
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -84,15 +86,15 @@
           <div class="col-sm-3">
             <div class="list-group">
               <a href="#qf-overview" class="list-group-item">Overview</a>
+              <a href="#qf-query-tester" class="list-group-item">Query Tester</a>
+              <a href="#qf-walter-web" class="list-group-item">Walter Web Example</a>
+              <a href="#qf-walter-windows" class="list-group-item">Walter Windows Example</a>
               <a href="#qf-export-to-datatable" class="list-group-item">Export to DataTable</a>
               <a href="#qf-excel-to-file" class="list-group-item">Export to Excel file</a>
               <a href="#qf-export-to-json" class="list-group-item">Export to Json</a>
               <a href="#qf-export-to-listitem" class="list-group-item">Export to ListItem array</a>
-              <a href="#qf-query-tester" class="list-group-item">Query Tester</a>
               <a href="#qf-jquery-autocomplete" class="list-group-item">jQuery AutoComplete</a>
               <a href="#qf-jquery-datatable" class="list-group-item">jQuery DataTable</a>
-              <a href="#qf-walter-web" class="list-group-item">Walter Web Example</a>
-              <a href="#qf-walter-windows" class="list-group-item">Walter Windows Example</a>
               <a href="#qf-query-syntax" class="list-group-item">Walter Query Syntax</a>
 
 
@@ -119,15 +121,15 @@
             </div>
 
 /copy qf_overview.html  
+/copy qf-query-tester.html
+/copy qf-walter-web.html
+/copy qf-walter-windows.html
 /copy qf-export-to-datatable.html
 /copy qf-excel-to-file.html  
 /copy qf-export-to-json.html
 /copy qf-export-to-listitem.html
-/copy qf-query-tester.html
 /copy qf-jquery-autocomplete.html
 /copy qf-jquery-datatable.html
-/copy qf-walter-web.html
-/copy qf-walter-windows.html
 /copy qf-query-syntax.html
 
           </div><!-- /.col-sm-9 -->
@@ -152,6 +154,9 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="public/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="public/GooglePrettify/prettify.js"></script>
+    <script src="public/magnific-popup/jquery.magnific-popup.min.js"></script>
+
 
 <!--
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -207,7 +212,35 @@
             $('.list-group > a[href="'+window.location.hash+'"]').click();
             setTimeout(function(){$(document).scrollTop($(window.location.hash).offset().top)}, 200);
           }
+
+          $('.query-test-screen-shots-popup-gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            tLoading: 'Loading image #%curr%...',
+            mainClass: 'mfp-img-mobile',
+            gallery: {
+              enabled: true,
+              navigateByImgClick: true,
+              preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+            },
+            image: {
+              tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+              titleSrc: function(item) {
+                var detailText = item.el.attr('data-detail');
+                if (typeof detailText === 'undefined') {
+                  detailText = "";
+                }
+                return item.el.attr('title') + '<small>'+ detailText + '</small>';
+              }
+            }
+          });
+
+
         }
+
+
+        prettyPrint();
+
       });
     </script>
   </body>

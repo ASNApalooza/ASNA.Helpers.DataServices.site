@@ -102,24 +102,24 @@
               <p>This example shows how to use Walter to export query results to a DataTable. This code could be used in either Windows or ASP.NET to bind data to a grid or other control. Exporting to a DataTable uses Walter's default output adapter so you'll notice that no explicit output adapter instancing is required. You'll see that later with the other output adapters.</p>
               <p>Don't let the concept of output adapters seem too mysterious. An output adapter is just a class that implements a simple interface. Output adapters get passed a DataTable by Walter's query engine and it's the output adapter's job to translate that incoming DataTable into something else. Walter's default output adapter emits a datatable&mdash;and as you can probably guess, it didn't take much code to produce this output adapter. It simply delivers the internal DataTable. More on output adapter internals later. Let's dig into how to use the default DataTable output adapter.</p> 
 
-                <pre><code>01  Using ASNA.Helpers.DataServices
-02  
-03  DclFld db     Type(AdgConnection)
-04  DclFld Query  Type(QueryDriver) 
-05  
-06  db = *New AdgConnection("*Public/IBMi") 
-07  
-08  Query = *New QueryDriver(db)
-09  Query.Args.Inputs.Library    = "examples"
-10  Query.Args.Inputs.File       = "CMastNewL2"
-11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
-12  Query.Args.Inputs.Rows       = 1000
-13  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-14  Query.Args.Inputs.QueryParms.Add(*New QueryField("CMSTATE",State))
-15  
-16  grid.DataSource = Query.Exec() *As DataTable
-17
-18 db.Close()</code></pre>
+                <pre class="prettyprint linenums">Using ASNA.Helpers.DataServices
+  
+DclFld db     Type(AdgConnection)
+DclFld Query  Type(QueryDriver) 
+
+db = *New AdgConnection("*Public/IBMi") 
+
+Query = *New QueryDriver(db)
+Query.Args.Inputs.Library    = "examples"
+Query.Args.Inputs.File       = "CMastNewL2"
+Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
+Query.Args.Inputs.Rows       = 1000
+Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+Query.Args.Inputs.QueryParms.Add(*New QueryField("CMSTATE",State))
+
+grid.DataSource = Query.Exec() *As DataTable
+
+db.Close()</pre>
 
 
 <div class="panel-group" id="accordion">

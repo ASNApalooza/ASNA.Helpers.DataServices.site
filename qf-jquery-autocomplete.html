@@ -109,26 +109,26 @@
 
                 <p>jQuery AutoComplete does all the UI work client side and works with either either HTML elements or ASP.NET controls to define the inputs. The code below shows using ASP.NET controls. In this case, we'll display both values, but in the real world, you'd typically stash the value looked up in a hidden input element.</p>
 
-<pre><code>&lt;asp:TextBox ID=&quot;textboxCustomerName&quot;   runat=&quot;server&quot; 
+<pre class="prettyprint linenums">&lt;asp:TextBox ID=&quot;textboxCustomerName&quot;   runat=&quot;server&quot; 
              EnableViewState=&quot;False&quot; ClientIDMode=&quot;Static&quot;&gt;&lt;/asp:TextBox&gt;
 &lt;asp:TextBox ID=&quot;textboxCustomerNumber&quot; runat=&quot;server&quot; 
-             EnableViewState=&quot;False&quot; ClientIDMode=&quot;Static&quot;&gt;&lt;/asp:TextBox&gt;</asp:TextBox></code></pre>
+             EnableViewState=&quot;False&quot; ClientIDMode=&quot;Static&quot;&gt;&lt;/asp:TextBox&gt;</asp:TextBox></pre>
 
               <p>Given the elements above, the entire JavaScript you need to provide to AutoComplete an input field is shown shown below. Lines 1-11 show Walter's JavaScript query interface and the line 13 is jQuery AutoComplete-specific.</p>
 
-<pre><code>01 var ACCustomerName = new ASNAHelpers.QueryInputArgs();
-02 ACCustomerName.url = "../services/jsonservice.ashx";
-03 ACCustomerName.Library = "examples";
-04 ACCustomerName.File = "cmastnewl2";
-05 ACCustomerName.FieldsList = "cmname:label,cmcustno:value";
-06 ACCustomerName.Rows = 12;
-07 ACCustomerName.Query = "CMNAME >= '{CMNAME}'";
-08 ACCustomerName.addQueryParm("CMNAME");
-09 ACCustomerName.addOption("labelTargetId", "textboxCustomerName");
-10 ACCustomerName.addOption("labelValueId", "textboxCustomerNumber");
-11 ACCustomerName.addOption("showLabelOnScroll", true);
-12
-13 ASNAHelpers.autoComplete.registerQuery(ACCustomerName);</pre></code>
+<pre class="prettyprint linenums">var ACCustomerName = new ASNAHelpers.QueryInputArgs();
+ACCustomerName.url = "../services/jsonservice.ashx";
+ACCustomerName.Library = "examples";
+ACCustomerName.File = "cmastnewl2";
+ACCustomerName.FieldsList = "cmname:label,cmcustno:value";
+ACCustomerName.Rows = 12;
+ACCustomerName.Query = "CMNAME >= '{CMNAME}'";
+ACCustomerName.addQueryParm("CMNAME");
+ACCustomerName.addOption("labelTargetId", "textboxCustomerName");
+ACCustomerName.addOption("labelValueId", "textboxCustomerNumber");
+ACCustomerName.addOption("showLabelOnScroll", true);
+
+ASNAHelpers.autoComplete.registerQuery(ACCustomerName);</pre></code>
 
 <div class="panel-group" id="accordion">
   <div class="panel panel-default">

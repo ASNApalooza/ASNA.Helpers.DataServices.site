@@ -101,25 +101,25 @@
               <h2>Export to Json</h2>
                 <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
 
-                <pre><code>01  Using ASNA.Helpers.DataServices
-02  
-03  DclFld db     Type(AdgConnection)
-04  DclFld Query  Type(QueryDriver) 
-05  DclFld Json   Type(*String)
-06  
-07  db = *New AdgConnection("*Public/IBMi") 
-08  
-09  Query = *New QueryDriver(db)
-10  Query.Args.Inputs.Library    = "examples"
-11  Query.Args.Inputs.File       = "CMastNewL2"
-12  Query.Args.Inputs.FieldsList = "CMCUSTNO:number,CMNAME:name,CMSTATE:state"
-13  Query.Args.Inputs.Rows       = -1
-14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
-16
-17  Query.OverrideAdapter(*New ASNA.Helpers.DataServices.ToJsonAdapter(Query.Args)) 
-18  
-19  Json = Query.Exec() *As *String</code></pre>
+                <pre class="prettyprint linenums">Using ASNA.Helpers.DataServices
+
+DclFld db     Type(AdgConnection)
+DclFld Query  Type(QueryDriver) 
+DclFld Json   Type(*String)
+
+db = *New AdgConnection("*Public/IBMi") 
+
+Query = *New QueryDriver(db)
+Query.Args.Inputs.Library    = "examples"
+Query.Args.Inputs.File       = "CMastNewL2"
+Query.Args.Inputs.FieldsList = "CMCUSTNO:number,CMNAME:name,CMSTATE:state"
+Query.Args.Inputs.Rows       = -1
+Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
+
+Query.OverrideAdapter(*New ASNA.Helpers.DataServices.ToJsonAdapter(Query.Args)) 
+
+Json = Query.Exec() *As *String</pre>
 
 
 <div class="panel-group" id="accordion">
@@ -161,7 +161,7 @@
 
 A sample of Walter's Json is shown below. Note that each field is identified by the keys specified with the field alises in Line 12 of the code above. The "list" node in the Json is the Json list. The other nodes are informational meta data about the query that might come in handy. This query meta will be discussed in more detail later. 
 <br/><br/>
-<pre><code>{
+<pre class="prettyprint linenums">{
   "resultRowCount": 4,
   "totalRowCount": 995,
   "rowCountPhrase": "4 of ~995",
@@ -190,7 +190,7 @@ A sample of Walter's Json is shown below. Note that each field is identified by 
   ],
   "startingKey": [],
   "endingKey": []
-}</code></pre>
+}</pre>
 <!-- Content ends here -->
 <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
           </div>

@@ -101,7 +101,50 @@
               <h2>Query Tester</h2>
                 <p>The Query Tester is a Windows program that you can use to interactive test Walter queries. With a query defined, you can see its various outputs and the code (in either AVR, C#, or JavaScript) that you can copy to put the query in your appliation. The Query Test limits query parameters, order by fields, and query options to three each. This is a Query Tester limitation&mdash;Walter allows as many of each as you need.</p>
 
-<img src="Walter-query-entry-screen.png"/>
+<!--
+<img src="" height="405" width="592"/>
+Enter a query definition
+<img src="" height="405" width="592"/>
+See the query results as a datatable
+<img src="" height="405" width="592"/>
+The query results as Json
+<img src="" height="405" width="592"/>
+Use View>Show query as Excel to see query results as Excel
+<img src="" height="405" width="592"/>
+The query's arguments as Json
+<img src="" height="405" width="592"/>
+The AVR you can paste into your program to perform the query as defined
+-->
+
+    <div class="html-code grid-of-images">
+      <div class="query-test-screen-shots-popup-gallery">
+        <a href="public/images/Walter-query-entry-screen.png" 
+           title="Query definition" data-detail="Enter your query here.">
+           <img src="public/images/Walter-query-entry-screen.png" width="150" height="102" />
+        </a>
+        <a href="public/images/Walter-query-results-as-datatable.png" 
+           title="Query results as a datatable" data-detail="Note the 'next page' link. Walter has automatic paging.">
+           <img src="public/images/Walter-query-results-as-datatable.png" width="150" height="102" />
+        </a>
+        <a href="public/images/Walter-query-results-as-json.png" 
+           title="Query results as Json" data-detail="The Json data includes 'list' array or query results and query meta data.">
+           <img src="public/images/Walter-query-results-as-json.png" width="150" height="102" />
+        </a>
+        <br/>
+        <a href="public/images/Walter-query-results-as-excel.png" 
+           title="Query results as Excel" data-detail="Any query can be exported as an Excel spreadsheet.">
+           <img src="public/images/Walter-query-results-as-excel.png" width="150" height="102" />
+        </a>
+        <a href="public/images/Walter-query-args.png"
+           title="Query arguements" data-detail="Query meta data is available as Json--mostly for diagnostic and debugging purposes.">
+           <img src="public/images/Walter-query-args.png" width="150" height="102" />
+        </a>
+        <a href="public/images/Walter-AVR-query-code.png" 
+           title="AVR cut-and-paste code for the query" data-detail="This is the AVR needed to duplicate the query in your code. All output types are available.">
+           <img src="public/images/Walter-AVR-query-code.png" width="150" height="102" />
+        </a>
+      </div>
+    </div>
 
 <br/><br/>
 <p><a href="https://github.com/ASNApalooza/Walter.Query.Tester">Query Tester on GitHub</a></p>

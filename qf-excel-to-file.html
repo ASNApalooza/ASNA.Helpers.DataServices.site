@@ -102,31 +102,31 @@
               <p>This example shows how to use Walter to create an Excel spreadsheet in a Windows program and save it to a local file. A later section shows how you can use Walter to produce an Excel spreadsheet in an ASP.NET app. </p>
               <p>Walter's Excel output adapter uses the open source <a href="https://closedxml.codeplex.com/">ClosedXML library</a>, which provides a rational API over Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK for Office.</a>. I chose the ClosedXML library because it is an active project, has the features Walter needed, and has pretty good documentation. There are many alternatives for writing Excel spreadsheets in the .NET environment. If Walter's Excel output adapter doesn't suit you, write your own!</p>
               <p>Walter's default Excel output adapter accepts two query options (through Walter's Inputs.Options collection) to specify the spreadsheet heading and the worksheet name. Through clever use of the Inputs.Options collection a scheme could probably be produced to specify to the Excel output adapter to create column and row total formulas. This has been on my todo list for months. Alas, that's why Walter is open source! Help please!</p> 
-                <pre><code>01  Using ASNA.Helpers.DataServices
-02  
-03  DclFld db           Type(AdgConnection)
-04  DclFld Query        Type(QueryDriver) 
-05  DclFld ExcelAdapter Type(ToExcelAdapter)
-06
-07  db = *New AdgConnection("*Public/IBMi")
-08  
-09  Query = *New QueryDriver(db)
-10  Query.Args.Inputs.Library    = "examples"
-11  Query.Args.Inputs.File       = "CMastNewL2"
-12  Query.Args.Inputs.FieldsList = "CMCUSTNO:Number,CMNAME:Name,+
-                                    CMADDR1:Address,CMCITY:City,CMSTATE:State"
-13  Query.Args.Inputs.Rows       = 1000
-14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-15  Query.Args.Inputs.QueryParms.Add(*New QueryField("CMSTATE",State))
-16
-17  Query.Args.Inputs.Options.Add("heading","Customer Listing")
-18  Query.Args.Inputs.Options.Add("worksheet_name","Customers")
-19
-20  ExcelAdapter = *New ToExcelAdapter(Query.Args) 
-21  Query.OverrideAdapter(*New ToExcelAdapter(Query.Args))
-22  Query.Exec() 
-23  db.Close()
-24  ExcelAdapter.SaveToLocalFile("c:\users\public\documents\test.xlsx")</code></pre>
+
+<pre class="prettyprint linenums">Using ASNA.Helpers.DataServices
+DclFld db           Type(AdgConnection)
+DclFld Query        Type(QueryDriver) 
+DclFld ExcelAdapter Type(ToExcelAdapter)
+
+db = *New AdgConnection("*Public/IBMi")
+
+Query = *New QueryDriver(db)
+Query.Args.Inputs.Library    = "examples"
+Query.Args.Inputs.File       = "CMastNewL2"
+Query.Args.Inputs.FieldsList = "CMCUSTNO:Number,CMNAME:Name,+
+                                CMADDR1:Address,CMCITY:City,CMSTATE:State"
+Query.Args.Inputs.Rows       = 1000
+Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+Query.Args.Inputs.QueryParms.Add(*New QueryField("CMSTATE",State))
+
+Query.Args.Inputs.Options.Add("heading","Customer Listing")
+Query.Args.Inputs.Options.Add("worksheet_name","Customers")
+
+ExcelAdapter = *New ToExcelAdapter(Query.Args) 
+Query.OverrideAdapter(*New ToExcelAdapter(Query.Args))
+Query.Exec() 
+db.Close()
+ExcelAdapter.SaveToLocalFile("c:\users\public\documents\test.xlsx")</pre>
 
 
 <div class="panel-group" id="accordion">

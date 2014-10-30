@@ -99,28 +99,28 @@
               <h2>Export to ListItem array</h2>
               <p>This example shows how to use Walter to export query results to an array of ListItems. An array of ListItems would most usually be used to populate ASP.NET DropDownList or the Windows ComboBox.
 
-                <pre><code>01 Using ASNA.Helpers.DataServices
-02 Using System.Web.UI.WebControls 
-03 ...
-04 DclFld db           Type(AdgConnection)
-05 DclFld Query        Type(QueryDriver) 
-06 DclArray ListItems  Type(ListItem) Rank(1)
-07
-08 db = *New AdgConnection("*Public/IBMi")
-09
-10 Query = *New ASNA.Helpers.DataServices.QueryDriver(db)
-11 Query.Args.Inputs.Library    = "examples
-12 Query.Args.Inputs.File       = "States"
-13 Query.Args.Inputs.FieldsList = "State:text,Abbrev:value"
-14 Query.Args.Inputs.Rows       = -1
-15 Query.Args.Inputs.Query      = "STATE >= 'A'"
-16 Query.Args.Inputs.QueryFields.Add(*New ASNA.Helpers.DataServices.QueryField("STATE",""))
-17
-18 Query.OverrideAdapter(*New ASNA.Helpers.DataServices.ToLisItemArrayAdapter(Query.Args)) 
-19
-20 ListItems = Query.Exec() *As ListItem[]
-21
-22 db.Close()</code></pre>
+                <pre class="prettyprint linenums">01 Using ASNA.Helpers.DataServices
+Using System.Web.UI.WebControls 
+...
+DclFld db           Type(AdgConnection)
+DclFld Query        Type(QueryDriver) 
+DclArray ListItems  Type(ListItem) Rank(1)
+
+db = *New AdgConnection("*Public/IBMi")
+
+Query = *New ASNA.Helpers.DataServices.QueryDriver(db)
+Query.Args.Inputs.Library    = "examples
+Query.Args.Inputs.File       = "States"
+Query.Args.Inputs.FieldsList = "State:text,Abbrev:value"
+Query.Args.Inputs.Rows       = -1
+Query.Args.Inputs.Query      = "STATE >= 'A'"
+Query.Args.Inputs.QueryFields.Add(*New ASNA.Helpers.DataServices.QueryField("STATE",""))
+
+Query.OverrideAdapter(*New ASNA.Helpers.DataServices.ToLisItemArrayAdapter(Query.Args)) 
+
+ListItems = Query.Exec() *As ListItem[]
+
+db.Close()</pre>
 
 <div class="panel-group" id="accordion">
   <div class="panel panel-default">
@@ -212,15 +212,16 @@
 
 <p>The code below shows how to use the array of ListItems to populate a Windows ComboBox. The ListItem object resides in the System.Web.UI.WebControls class. Therefore, when you use Walter to return an array of ListItems for a Windows app, be sure to add a reference to the System.Web assembly and adding a using state for System.Web.UI.WebControls.
 
-                <pre><code>01 Using System.Web.UI.WebControls
-02 ...
-03 comboboxStates.Items.Clear()
-04 comboboxStates.Items.AddRange(ListItems) 
-05 comboboxStates.SelectedIndex = 0</code></pre> 
+                <pre class="prettyprint linenums">Using System.Web.UI.WebControls
+...
+comboboxStates.Items.Clear()
+comboboxStates.Items.AddRange(ListItems) 
+comboboxStates.SelectedIndex = 0</pre> 
 
 <p>The code above shows how to use the Windows ComboBox's AddRange() method to assign the resulting ListItemArray to the ComboBox. Similiar code is used with the ASP.NET DropDownList control.</p>
-<pre><code>BegSr comboboxStates_SelectedIndexChanged Access(*Private) +
-                              Event(*this.comboboxStates.SelectedIndexChanged)
+<pre class="prettyprint linenums">
+BegSr comboboxStates_SelectedIndexChanged Access(*Private) +
+                      ent(*this.comboboxStates.SelectedIndexChanged)
     DclSrParm sender Type(*Object)
     DclSrParm e Type(System.EventArgs)
 
@@ -229,7 +230,7 @@
     li = comboboxStates.SelectedItem *As ListItem
     // li.value = item's value.
     // li.text =item's text.
-EndSr</code></pre>
+EndSr</pre>
 
 <p>Use the code above to fetch the selected ListItem from a Windows ComboBox. The selected ListItem provides the select text and value for the selected item.</p>
 

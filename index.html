@@ -14,6 +14,8 @@
     <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"> -->
     <link href="public/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/css/index.css" rel="stylesheet">
+    <link href="public/css/prettify.css" rel="stylesheet">
+    <link href="public/magnific-popup/magnific-popup.css" rel="stylesheet">
 
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -84,15 +86,15 @@
           <div class="col-sm-3">
             <div class="list-group">
               <a href="#qf-overview" class="list-group-item">Overview</a>
+              <a href="#qf-query-tester" class="list-group-item">Query Tester</a>
+              <a href="#qf-walter-web" class="list-group-item">Walter Web Example</a>
+              <a href="#qf-walter-windows" class="list-group-item">Walter Windows Example</a>
               <a href="#qf-export-to-datatable" class="list-group-item">Export to DataTable</a>
               <a href="#qf-excel-to-file" class="list-group-item">Export to Excel file</a>
               <a href="#qf-export-to-json" class="list-group-item">Export to Json</a>
               <a href="#qf-export-to-listitem" class="list-group-item">Export to ListItem array</a>
-              <a href="#qf-query-tester" class="list-group-item">Query Tester</a>
               <a href="#qf-jquery-autocomplete" class="list-group-item">jQuery AutoComplete</a>
               <a href="#qf-jquery-datatable" class="list-group-item">jQuery DataTable</a>
-              <a href="#qf-walter-web" class="list-group-item">Walter Web Example</a>
-              <a href="#qf-walter-windows" class="list-group-item">Walter Windows Example</a>
               <a href="#qf-query-syntax" class="list-group-item">Walter Query Syntax</a>
 
 
@@ -166,35 +168,99 @@
                 <li><strong>ListItem array</strong>. This adapter produces a ListItem array for populating ASP.NET's DropDownList controls or Windows's ComboBox. </li>
                 </ul>
                 <p></p><p>Should you need some other output type, it's easy to write your own output adapters by implementing a simple interface that Walter provides.</p>
-                <p>The next several sections provide overviews of using Walter with several of its outputs. 
-
+                <p>Before you dig deeply into Walter's technical details, take a look at the next three sections. They feature three example programs of Walter in action. These examples include a Windows-based query tester for Walter, a browser-based example, and a Windows-based example. 
                 <hr>
             </div>
 <!-- End: qf_overview.html -->
+<!-- Begin: qf-query-tester.html -->
+            <div id="qf-query-tester" class="content section">
+              <h2>Query Tester</h2>
+                <p>The Query Tester is a Windows program that you can use to interactive test Walter queries. With a query defined, you can see its various outputs and the code (in either AVR, C#, or JavaScript) that you can copy to put the query in your appliation. The Query Test limits query parameters, order by fields, and query options to three each. This is a Query Tester limitation&mdash;Walter allows as many of each as you need.</p>
+
+<!--
+<img src="" height="405" width="592"/>
+Enter a query definition
+<img src="" height="405" width="592"/>
+See the query results as a datatable
+<img src="" height="405" width="592"/>
+The query results as Json
+<img src="" height="405" width="592"/>
+Use View>Show query as Excel to see query results as Excel
+<img src="" height="405" width="592"/>
+The query's arguments as Json
+<img src="" height="405" width="592"/>
+The AVR you can paste into your program to perform the query as defined
+-->
+
+    <div class="html-code grid-of-images">
+      <div class="query-test-screen-shots-popup-gallery">
+        <a href="public/images/Walter-query-entry-screen.png" 
+           title="Query definition" data-detail="Enter your query here.">
+           <img src="public/images/Walter-query-entry-screen.png" width="150" height="102" />
+        </a>
+        <a href="public/images/Walter-query-results-as-datatable.png" 
+           title="Query results as a datatable" data-detail="Note the 'next page' link. Walter has automatic paging.">
+           <img src="public/images/Walter-query-results-as-datatable.png" width="150" height="102" />
+        </a>
+        <a href="public/images/Walter-query-results-as-json.png" 
+           title="Query results as Json" data-detail="The Json data includes 'list' array or query results and query meta data.">
+           <img src="public/images/Walter-query-results-as-json.png" width="150" height="102" />
+        </a><br/>
+        <a href="public/images/Walter-query-results-as-excel.png" 
+           title="Query results as Excel" data-detail="Any query can be exported as an Excel spreadsheet.">
+           <img src="public/images/Walter-query-results-as-excel.png" width="150" height="102" />
+        </a>
+        <a href="public/images/Walter-query-args.png"
+           title="Query arguements" data-detail="Query meta data is available as Json--mostly for diagnostic and debugging purposes.">
+           <img src="public/images/Walter-query-args.png" width="150" height="102" />
+        </a>
+        <a href="public/images/Walter-AVR-query-code.png" 
+           title="AVR cut-and-paste code for the query" data-detail="This is the AVR needed to duplicate the query in your code. All output types are available.">
+           <img src="public/images/Walter-AVR-query-code.png" width="150" height="102" />
+        </a>
+      </div>
+    </div>
+
+<br/><br/>
+<p><a href="https://github.com/ASNApalooza/Walter.Query.Tester">Query Tester on GitHub</a></p>
+<p><a href="https://github.com/ASNApalooza/Walter.Query.Tester/archive/master.zip">Query Tester direct zip download from GitHub</a></p>
+
+
+<!-- End: qf-query-tester.html -->
+<!-- Begin: qf-walter-web.html -->
+            <div id="qf-walter-web" class="content section">
+              <h2>Walter Web example</h2>
+                <p></p>
+<!-- End: qf-walter-web.html -->
+<!-- Begin: qf-walter-windows.html -->
+            <div id="qf-walter-windows" class="content section">
+              <h2>Walter Windows example</h2>
+                <p></p>
+<!-- End: qf-walter-windows.html -->
 <!-- Begin: qf-export-to-datatable.html -->
             <div id="qf-export-to-datatable" class="content section">
               <h2>Export to DataTable</h2>
               <p>This example shows how to use Walter to export query results to a DataTable. This code could be used in either Windows or ASP.NET to bind data to a grid or other control. Exporting to a DataTable uses Walter's default output adapter so you'll notice that no explicit output adapter instancing is required. You'll see that later with the other output adapters.</p>
               <p>Don't let the concept of output adapters seem too mysterious. An output adapter is just a class that implements a simple interface. Output adapters get passed a DataTable by Walter's query engine and it's the output adapter's job to translate that incoming DataTable into something else. Walter's default output adapter emits a datatable&mdash;and as you can probably guess, it didn't take much code to produce this output adapter. It simply delivers the internal DataTable. More on output adapter internals later. Let's dig into how to use the default DataTable output adapter.</p> 
 
-                <pre><code>01  Using ASNA.Helpers.DataServices
-02  
-03  DclFld db     Type(AdgConnection)
-04  DclFld Query  Type(QueryDriver) 
-05  
-06  db = *New AdgConnection("*Public/IBMi") 
-07  
-08  Query = *New QueryDriver(db)
-09  Query.Args.Inputs.Library    = "examples"
-10  Query.Args.Inputs.File       = "CMastNewL2"
-11  Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
-12  Query.Args.Inputs.Rows       = 1000
-13  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-14  Query.Args.Inputs.QueryParms.Add(*New QueryField("CMSTATE",State))
-15  
-16  grid.DataSource = Query.Exec() *As DataTable
-17
-18 db.Close()</code></pre>
+                <pre class="prettyprint linenums">Using ASNA.Helpers.DataServices
+  
+DclFld db     Type(AdgConnection)
+DclFld Query  Type(QueryDriver) 
+
+db = *New AdgConnection("*Public/IBMi") 
+
+Query = *New QueryDriver(db)
+Query.Args.Inputs.Library    = "examples"
+Query.Args.Inputs.File       = "CMastNewL2"
+Query.Args.Inputs.FieldsList = "CMCUSTNO,CMNAME,CMSTATE"
+Query.Args.Inputs.Rows       = 1000
+Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+Query.Args.Inputs.QueryParms.Add(*New QueryField("CMSTATE",State))
+
+grid.DataSource = Query.Exec() *As DataTable
+
+db.Close()</pre>
 
 
 <div class="panel-group" id="accordion">
@@ -281,31 +347,31 @@ Queries are independent of their output format so the same core query used to ex
               <p>This example shows how to use Walter to create an Excel spreadsheet in a Windows program and save it to a local file. A later section shows how you can use Walter to produce an Excel spreadsheet in an ASP.NET app. </p>
               <p>Walter's Excel output adapter uses the open source <a href="https://closedxml.codeplex.com/">ClosedXML library</a>, which provides a rational API over Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK for Office.</a>. I chose the ClosedXML library because it is an active project, has the features Walter needed, and has pretty good documentation. There are many alternatives for writing Excel spreadsheets in the .NET environment. If Walter's Excel output adapter doesn't suit you, write your own!</p>
               <p>Walter's default Excel output adapter accepts two query options (through Walter's Inputs.Options collection) to specify the spreadsheet heading and the worksheet name. Through clever use of the Inputs.Options collection a scheme could probably be produced to specify to the Excel output adapter to create column and row total formulas. This has been on my todo list for months. Alas, that's why Walter is open source! Help please!</p> 
-                <pre><code>01  Using ASNA.Helpers.DataServices
-02  
-03  DclFld db           Type(AdgConnection)
-04  DclFld Query        Type(QueryDriver) 
-05  DclFld ExcelAdapter Type(ToExcelAdapter)
-06
-07  db = *New AdgConnection("*Public/IBMi")
-08  
-09  Query = *New QueryDriver(db)
-10  Query.Args.Inputs.Library    = "examples"
-11  Query.Args.Inputs.File       = "CMastNewL2"
-12  Query.Args.Inputs.FieldsList = "CMCUSTNO:Number,CMNAME:Name,+
-                                    CMADDR1:Address,CMCITY:City,CMSTATE:State"
-13  Query.Args.Inputs.Rows       = 1000
-14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-15  Query.Args.Inputs.QueryParms.Add(*New QueryField("CMSTATE",State))
-16
-17  Query.Args.Inputs.Options.Add("heading","Customer Listing")
-18  Query.Args.Inputs.Options.Add("worksheet_name","Customers")
-19
-20  ExcelAdapter = *New ToExcelAdapter(Query.Args) 
-21  Query.OverrideAdapter(*New ToExcelAdapter(Query.Args))
-22  Query.Exec() 
-23  db.Close()
-24  ExcelAdapter.SaveToLocalFile("c:\users\public\documents\test.xlsx")</code></pre>
+
+<pre class="prettyprint linenums">Using ASNA.Helpers.DataServices
+DclFld db           Type(AdgConnection)
+DclFld Query        Type(QueryDriver) 
+DclFld ExcelAdapter Type(ToExcelAdapter)
+
+db = *New AdgConnection("*Public/IBMi")
+
+Query = *New QueryDriver(db)
+Query.Args.Inputs.Library    = "examples"
+Query.Args.Inputs.File       = "CMastNewL2"
+Query.Args.Inputs.FieldsList = "CMCUSTNO:Number,CMNAME:Name,+
+                                CMADDR1:Address,CMCITY:City,CMSTATE:State"
+Query.Args.Inputs.Rows       = 1000
+Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+Query.Args.Inputs.QueryParms.Add(*New QueryField("CMSTATE",State))
+
+Query.Args.Inputs.Options.Add("heading","Customer Listing")
+Query.Args.Inputs.Options.Add("worksheet_name","Customers")
+
+ExcelAdapter = *New ToExcelAdapter(Query.Args) 
+Query.OverrideAdapter(*New ToExcelAdapter(Query.Args))
+Query.Exec() 
+db.Close()
+ExcelAdapter.SaveToLocalFile("c:\users\public\documents\test.xlsx")</pre>
 
 
 <div class="panel-group" id="accordion">
@@ -419,25 +485,25 @@ Queries are independent of their output format so the same core query used to ex
               <h2>Export to Json</h2>
                 <p>Walter is a component that performs dynamic read-only queries against DataGate databases. It works against physical and logical files. Walter aims to provide a declarative model that makes is easy to fetch performant dynamic query results with a minimal of effort and with a high . It takes about 12 lines of code to configure Walter and produce output with it. When used against the IBM i, Walter consistently produces output in less than 1/10 of a second. </p>
 
-                <pre><code>01  Using ASNA.Helpers.DataServices
-02  
-03  DclFld db     Type(AdgConnection)
-04  DclFld Query  Type(QueryDriver) 
-05  DclFld Json   Type(*String)
-06  
-07  db = *New AdgConnection("*Public/IBMi") 
-08  
-09  Query = *New QueryDriver(db)
-10  Query.Args.Inputs.Library    = "examples"
-11  Query.Args.Inputs.File       = "CMastNewL2"
-12  Query.Args.Inputs.FieldsList = "CMCUSTNO:number,CMNAME:name,CMSTATE:state"
-13  Query.Args.Inputs.Rows       = -1
-14  Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
-15  Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
-16
-17  Query.OverrideAdapter(*New ASNA.Helpers.DataServices.ToJsonAdapter(Query.Args)) 
-18  
-19  Json = Query.Exec() *As *String</code></pre>
+                <pre class="prettyprint linenums">Using ASNA.Helpers.DataServices
+
+DclFld db     Type(AdgConnection)
+DclFld Query  Type(QueryDriver) 
+DclFld Json   Type(*String)
+
+db = *New AdgConnection("*Public/IBMi") 
+
+Query = *New QueryDriver(db)
+Query.Args.Inputs.Library    = "examples"
+Query.Args.Inputs.File       = "CMastNewL2"
+Query.Args.Inputs.FieldsList = "CMCUSTNO:number,CMNAME:name,CMSTATE:state"
+Query.Args.Inputs.Rows       = -1
+Query.Args.Inputs.Query      = "CMSTATE = '{CMSTATE}'"
+Query.Args.Inputs.QueryFields.Add(*New QueryField("CMSTATE",State))
+
+Query.OverrideAdapter(*New ASNA.Helpers.DataServices.ToJsonAdapter(Query.Args)) 
+
+Json = Query.Exec() *As *String</pre>
 
 
 <div class="panel-group" id="accordion">
@@ -479,7 +545,7 @@ Queries are independent of their output format so the same core query used to ex
 
 A sample of Walter's Json is shown below. Note that each field is identified by the keys specified with the field alises in Line 12 of the code above. The "list" node in the Json is the Json list. The other nodes are informational meta data about the query that might come in handy. This query meta will be discussed in more detail later. 
 <br/><br/>
-<pre><code>{
+<pre class="prettyprint linenums">{
   "resultRowCount": 4,
   "totalRowCount": 995,
   "rowCountPhrase": "4 of ~995",
@@ -508,35 +574,35 @@ A sample of Walter's Json is shown below. Note that each field is identified by 
   ],
   "startingKey": [],
   "endingKey": []
-}</code></pre>
+}</pre>
 <!-- End: qf-export-to-json.html -->
 <!-- Begin: qf-export-to-listitem.html -->
             <div id="qf-export-to-listitem" class="content section">
               <h2>Export to ListItem array</h2>
               <p>This example shows how to use Walter to export query results to an array of ListItems. An array of ListItems would most usually be used to populate ASP.NET DropDownList or the Windows ComboBox.
 
-                <pre><code>01 Using ASNA.Helpers.DataServices
-02 Using System.Web.UI.WebControls 
-03 ...
-04 DclFld db           Type(AdgConnection)
-05 DclFld Query        Type(QueryDriver) 
-06 DclArray ListItems  Type(ListItem) Rank(1)
-07
-08 db = *New AdgConnection("*Public/IBMi")
-09
-10 Query = *New ASNA.Helpers.DataServices.QueryDriver(db)
-11 Query.Args.Inputs.Library    = "examples
-12 Query.Args.Inputs.File       = "States"
-13 Query.Args.Inputs.FieldsList = "State:text,Abbrev:value"
-14 Query.Args.Inputs.Rows       = -1
-15 Query.Args.Inputs.Query      = "STATE >= 'A'"
-16 Query.Args.Inputs.QueryFields.Add(*New ASNA.Helpers.DataServices.QueryField("STATE",""))
-17
-18 Query.OverrideAdapter(*New ASNA.Helpers.DataServices.ToLisItemArrayAdapter(Query.Args)) 
-19
-20 ListItems = Query.Exec() *As ListItem[]
-21
-22 db.Close()</code></pre>
+                <pre class="prettyprint linenums">01 Using ASNA.Helpers.DataServices
+Using System.Web.UI.WebControls 
+...
+DclFld db           Type(AdgConnection)
+DclFld Query        Type(QueryDriver) 
+DclArray ListItems  Type(ListItem) Rank(1)
+
+db = *New AdgConnection("*Public/IBMi")
+
+Query = *New ASNA.Helpers.DataServices.QueryDriver(db)
+Query.Args.Inputs.Library    = "examples
+Query.Args.Inputs.File       = "States"
+Query.Args.Inputs.FieldsList = "State:text,Abbrev:value"
+Query.Args.Inputs.Rows       = -1
+Query.Args.Inputs.Query      = "STATE >= 'A'"
+Query.Args.Inputs.QueryFields.Add(*New ASNA.Helpers.DataServices.QueryField("STATE",""))
+
+Query.OverrideAdapter(*New ASNA.Helpers.DataServices.ToLisItemArrayAdapter(Query.Args)) 
+
+ListItems = Query.Exec() *As ListItem[]
+
+db.Close()</pre>
 
 <div class="panel-group" id="accordion">
   <div class="panel panel-default">
@@ -628,15 +694,16 @@ A sample of Walter's Json is shown below. Note that each field is identified by 
 
 <p>The code below shows how to use the array of ListItems to populate a Windows ComboBox. The ListItem object resides in the System.Web.UI.WebControls class. Therefore, when you use Walter to return an array of ListItems for a Windows app, be sure to add a reference to the System.Web assembly and adding a using state for System.Web.UI.WebControls.
 
-                <pre><code>01 Using System.Web.UI.WebControls
-02 ...
-03 comboboxStates.Items.Clear()
-04 comboboxStates.Items.AddRange(ListItems) 
-05 comboboxStates.SelectedIndex = 0</code></pre> 
+                <pre class="prettyprint linenums">Using System.Web.UI.WebControls
+...
+comboboxStates.Items.Clear()
+comboboxStates.Items.AddRange(ListItems) 
+comboboxStates.SelectedIndex = 0</pre> 
 
 <p>The code above shows how to use the Windows ComboBox's AddRange() method to assign the resulting ListItemArray to the ComboBox. Similiar code is used with the ASP.NET DropDownList control.</p>
-<pre><code>BegSr comboboxStates_SelectedIndexChanged Access(*Private) +
-                              Event(*this.comboboxStates.SelectedIndexChanged)
+<pre class="prettyprint linenums">
+BegSr comboboxStates_SelectedIndexChanged Access(*Private) +
+                      ent(*this.comboboxStates.SelectedIndexChanged)
     DclSrParm sender Type(*Object)
     DclSrParm e Type(System.EventArgs)
 
@@ -645,7 +712,7 @@ A sample of Walter's Json is shown below. Note that each field is identified by 
     li = comboboxStates.SelectedItem *As ListItem
     // li.value = item's value.
     // li.text =item's text.
-EndSr</code></pre>
+EndSr</pre>
 
 <p>Use the code above to fetch the selected ListItem from a Windows ComboBox. The selected ListItem provides the select text and value for the selected item.</p>
 
@@ -655,19 +722,6 @@ EndSr</code></pre>
 </div><!-- content section-->
 
 <!-- End: qf-export-to-listitem.html -->
-<!-- Begin: qf-query-tester.html -->
-            <div id="qf-query-tester" class="content section">
-              <h2>Query Tester</h2>
-                <p>The Query Tester is a Windows program that you can use to interactive test Walter queries. With a query defined, you can see its various outputs and the code (in either AVR, C#, or JavaScript) that you can copy to put the query in your appliation. The Query Test limits query parameters, order by fields, and query options to three each. This is a Query Tester limitation&mdash;Walter allows as many of each as you need.</p>
-
-<img src="Walter-query-entry-screen.png"/>
-
-<br/><br/>
-<p><a href="https://github.com/ASNApalooza/Walter.Query.Tester">Query Tester on GitHub</a></p>
-<p><a href="https://github.com/ASNApalooza/Walter.Query.Tester/archive/master.zip">Query Tester direct zip download from GitHub</a></p>
-
-
-<!-- End: qf-query-tester.html -->
 <!-- Begin: qf-jquery-autocomplete.html -->
             <div id="qf-jquery-autocomplete" class="content section">
               <h2>jQuery AutoComplete</h2>
@@ -681,26 +735,26 @@ EndSr</code></pre>
 
                 <p>jQuery AutoComplete does all the UI work client side and works with either either HTML elements or ASP.NET controls to define the inputs. The code below shows using ASP.NET controls. In this case, we'll display both values, but in the real world, you'd typically stash the value looked up in a hidden input element.</p>
 
-<pre><code>&lt;asp:TextBox ID=&quot;textboxCustomerName&quot;   runat=&quot;server&quot; 
+<pre class="prettyprint linenums">&lt;asp:TextBox ID=&quot;textboxCustomerName&quot;   runat=&quot;server&quot; 
              EnableViewState=&quot;False&quot; ClientIDMode=&quot;Static&quot;&gt;&lt;/asp:TextBox&gt;
 &lt;asp:TextBox ID=&quot;textboxCustomerNumber&quot; runat=&quot;server&quot; 
-             EnableViewState=&quot;False&quot; ClientIDMode=&quot;Static&quot;&gt;&lt;/asp:TextBox&gt;</asp:TextBox></code></pre>
+             EnableViewState=&quot;False&quot; ClientIDMode=&quot;Static&quot;&gt;&lt;/asp:TextBox&gt;</asp:TextBox></pre>
 
               <p>Given the elements above, the entire JavaScript you need to provide to AutoComplete an input field is shown shown below. Lines 1-11 show Walter's JavaScript query interface and the line 13 is jQuery AutoComplete-specific.</p>
 
-<pre><code>01 var ACCustomerName = new ASNAHelpers.QueryInputArgs();
-02 ACCustomerName.url = "../services/jsonservice.ashx";
-03 ACCustomerName.Library = "examples";
-04 ACCustomerName.File = "cmastnewl2";
-05 ACCustomerName.FieldsList = "cmname:label,cmcustno:value";
-06 ACCustomerName.Rows = 12;
-07 ACCustomerName.Query = "CMNAME >= '{CMNAME}'";
-08 ACCustomerName.addQueryParm("CMNAME");
-09 ACCustomerName.addOption("labelTargetId", "textboxCustomerName");
-10 ACCustomerName.addOption("labelValueId", "textboxCustomerNumber");
-11 ACCustomerName.addOption("showLabelOnScroll", true);
-12
-13 ASNAHelpers.autoComplete.registerQuery(ACCustomerName);</pre></code>
+<pre class="prettyprint linenums">var ACCustomerName = new ASNAHelpers.QueryInputArgs();
+ACCustomerName.url = "../services/jsonservice.ashx";
+ACCustomerName.Library = "examples";
+ACCustomerName.File = "cmastnewl2";
+ACCustomerName.FieldsList = "cmname:label,cmcustno:value";
+ACCustomerName.Rows = 12;
+ACCustomerName.Query = "CMNAME >= '{CMNAME}'";
+ACCustomerName.addQueryParm("CMNAME");
+ACCustomerName.addOption("labelTargetId", "textboxCustomerName");
+ACCustomerName.addOption("labelValueId", "textboxCustomerNumber");
+ACCustomerName.addOption("showLabelOnScroll", true);
+
+ASNAHelpers.autoComplete.registerQuery(ACCustomerName);</pre></code>
 
 <div class="panel-group" id="accordion">
   <div class="panel panel-default">
@@ -802,16 +856,6 @@ asdfasdf
               <h2>jQuery DataTable</h2>
                 <p></p>
 <!-- End: qf-jquery-datatable.html -->
-<!-- Begin: qf-walter-web.html -->
-            <div id="qf-walter-web" class="content section">
-              <h2>Walter Web example</h2>
-                <p></p>
-<!-- End: qf-walter-web.html -->
-<!-- Begin: qf-walter-windows.html -->
-            <div id="qf-walter-windows" class="content section">
-              <h2>Walter Windows example</h2>
-                <p></p>
-<!-- End: qf-walter-windows.html -->
 <!-- Begin: qf-query-syntax.html -->
             <div id="qf-query-syntax" class="content section">
               <h2>Query Syntax</h2>
@@ -840,6 +884,9 @@ asdfasdf
 
     <!-- Bootstrap Core JavaScript -->
     <script src="public/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="public/GooglePrettify/prettify.js"></script>
+    <script src="public/magnific-popup/jquery.magnific-popup.min.js"></script>
+
 
 <!--
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -895,7 +942,35 @@ asdfasdf
             $('.list-group > a[href="'+window.location.hash+'"]').click();
             setTimeout(function(){$(document).scrollTop($(window.location.hash).offset().top)}, 200);
           }
+
+          $('.query-test-screen-shots-popup-gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            tLoading: 'Loading image #%curr%...',
+            mainClass: 'mfp-img-mobile',
+            gallery: {
+              enabled: true,
+              navigateByImgClick: true,
+              preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+            },
+            image: {
+              tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+              titleSrc: function(item) {
+                var detailText = item.el.attr('data-detail');
+                if (typeof detailText === 'undefined') {
+                  detailText = "";
+                }
+                return item.el.attr('title') + '<small>'+ detailText + '</small>';
+              }
+            }
+          });
+
+
         }
+
+
+        prettyPrint();
+
       });
     </script>
   </body>
