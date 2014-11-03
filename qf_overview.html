@@ -133,18 +133,27 @@
                 <li>Provide an interactive query tester for creating and testing queries and generating the AVR, C#, or even
                 JavaScript. </li>
                 <li>Be formally open sourced so that others can easily extend, enhance, and bugfix Walter.</li>
+                </ul>
                 </p>
 
+                <h3>Output adapters</h3>
                 <p>Walter's query output is driven by output adapters. The default output adapter emits query output as a DataTable. The DataTable can be bound to most Windows and ASP.NET controls (including Windows' DataGridView and ASP.NET's GridView). Walter also includes output adapters to emit query results as: </p>
 
                 <ul class="task-list">
                 <li><strong>Json</strong>. Walter's Json output can be used in a variety of ways including feeding a JavaScript autocomplete widget (such as jQuery UI's <a href="http://jqueryui.com/autocomplete/">AutoComplete</a>) or feeding a client grid such as the jQuery DataTable grid. Walter includes an HTTP handler to make its Json output easy to use with ASP.NET. A small JavaScript wrapper for the jQuery UI AutoComplete widget is included. Using Walter and its components make it very easy to add AutoComplete to your ASP.NET pages (including Wings and Monarch pages). </li>
-                <li><strong>Excel</strong>. Walter's Excel adapter produces Excel spreadsheets (in XSLX format) on either Windows Web servers or Windows clients, without needing Excel installed. This adapter uses the <a href="https://closedxml.codeplex.com/">ClosedXML</a> library (which itself is a wrapper around Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK)</a>.<br>
+                <li><strong>Excel</strong>. Walter's Excel adapter produces Excel spreadsheets (in XLSX format) on either Windows Web servers or Windows clients, without needing Excel installed. This adapter uses the <a href="https://closedxml.codeplex.com/">ClosedXML</a> library (which itself is a wrapper around Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK)</a>.<br>
                 </li>
                 <li><strong>ListItem array</strong>. This adapter produces a ListItem array for populating ASP.NET's DropDownList controls or Windows's ComboBox. </li>
                 </ul>
                 <p></p><p>Should you need some other output type, it's easy to write your own output adapters by implementing a simple interface that Walter provides.</p>
                 <p>Before you dig deeply into Walter's technical details, take a look at the next three sections. They feature three example programs of Walter in action. These examples include a Windows-based query tester for Walter, a browser-based example, and a Windows-based example. 
+                
+                <div class="alert alert-info text-center">
+                 <p>Walter was written with AVR 11.2, Visual Studio 2012, and .NET 4.5. You'll need these versions to use Walter without any additional effort. For at least AVR 10.2, you should be able start an empty project and use Visual Studio's 'Add existing item' feature to pull Walter source files into that project to build your own AVR 10.2 version. For AVR 12.0 users, Walter should simply open and compile. Walter will soon be officially ported to AVR 12.0.</p>
+                 <p>
+                 </p>
+                </div>
+
                 <hr>
             </div>
 <!-- Content ends here -->

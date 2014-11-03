@@ -16,7 +16,8 @@
     <link href="public/css/index.css" rel="stylesheet">
     <link href="public/css/prettify.css" rel="stylesheet">
     <link href="public/magnific-popup/magnific-popup.css" rel="stylesheet">
-
+    <link href="public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="public/css/BootStrap01.css" rel="stylesheet" >
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -64,7 +65,7 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" id="tabs">
-            <li><a href="#components" data-toggle="tab">Documentation</a></li>
+            <!-- <li><a href="#components" data-toggle="tab">Documentation</a></li> -->
             <!-- <li><a href="#about" data-toggle="tab">About</a></li> -->
           </ul>
         </div><!--/.nav-collapse -->
@@ -73,15 +74,17 @@
 
     <div class="content container tab-content">
 
-      <div class="tab-pane active" id="home">
-        <div class="jumbotron">
+      <!-- <div class="tab-pane" id="home"> -->
+<!--         <div class="jumbotron">
           <h1>Some Framework</h1>
           <p>This is a template for a documentation website for a programming framework or library. It includes a template for components description with a navigation list.</p>
           <p><a href="#" class="btn btn-primary btn-lg" role="button">Download &darr;</a></p>
         </div>
-      </div>
+ -->
 
-      <div class="tab-pane" id="components">
+      <!-- </div> -->
+
+      <div class="tab-pane active" id="components">
         <div class="row">
           <div class="col-sm-3">
             <div class="list-group">
@@ -156,6 +159,8 @@
     <script src="public/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="public/GooglePrettify/prettify.js"></script>
     <script src="public/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="public/js/fitvids.js"></script>
+
 
 
 <!--
@@ -240,6 +245,8 @@
 
 
         prettyPrint();
+
+        $(".you-tube-videos").fitvids();
 
       });
     </script>

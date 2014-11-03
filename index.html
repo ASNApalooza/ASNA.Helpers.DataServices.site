@@ -16,7 +16,8 @@
     <link href="public/css/index.css" rel="stylesheet">
     <link href="public/css/prettify.css" rel="stylesheet">
     <link href="public/magnific-popup/magnific-popup.css" rel="stylesheet">
-
+    <link href="public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="public/css/BootStrap01.css" rel="stylesheet" >
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -64,7 +65,7 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" id="tabs">
-            <li><a href="#components" data-toggle="tab">Documentation</a></li>
+            <!-- <li><a href="#components" data-toggle="tab">Documentation</a></li> -->
             <!-- <li><a href="#about" data-toggle="tab">About</a></li> -->
           </ul>
         </div><!--/.nav-collapse -->
@@ -73,15 +74,17 @@
 
     <div class="content container tab-content">
 
-      <div class="tab-pane active" id="home">
-        <div class="jumbotron">
+      <!-- <div class="tab-pane" id="home"> -->
+<!--         <div class="jumbotron">
           <h1>Some Framework</h1>
           <p>This is a template for a documentation website for a programming framework or library. It includes a template for components description with a navigation list.</p>
           <p><a href="#" class="btn btn-primary btn-lg" role="button">Download &darr;</a></p>
         </div>
-      </div>
+ -->
 
-      <div class="tab-pane" id="components">
+      <!-- </div> -->
+
+      <div class="tab-pane active" id="components">
         <div class="row">
           <div class="col-sm-3">
             <div class="list-group">
@@ -157,75 +160,155 @@
                 <li>Provide an interactive query tester for creating and testing queries and generating the AVR, C#, or even
                 JavaScript. </li>
                 <li>Be formally open sourced so that others can easily extend, enhance, and bugfix Walter.</li>
+                </ul>
                 </p>
 
+                <h3>Output adapters</h3>
                 <p>Walter's query output is driven by output adapters. The default output adapter emits query output as a DataTable. The DataTable can be bound to most Windows and ASP.NET controls (including Windows' DataGridView and ASP.NET's GridView). Walter also includes output adapters to emit query results as: </p>
 
                 <ul class="task-list">
                 <li><strong>Json</strong>. Walter's Json output can be used in a variety of ways including feeding a JavaScript autocomplete widget (such as jQuery UI's <a href="http://jqueryui.com/autocomplete/">AutoComplete</a>) or feeding a client grid such as the jQuery DataTable grid. Walter includes an HTTP handler to make its Json output easy to use with ASP.NET. A small JavaScript wrapper for the jQuery UI AutoComplete widget is included. Using Walter and its components make it very easy to add AutoComplete to your ASP.NET pages (including Wings and Monarch pages). </li>
-                <li><strong>Excel</strong>. Walter's Excel adapter produces Excel spreadsheets (in XSLX format) on either Windows Web servers or Windows clients, without needing Excel installed. This adapter uses the <a href="https://closedxml.codeplex.com/">ClosedXML</a> library (which itself is a wrapper around Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK)</a>.<br>
+                <li><strong>Excel</strong>. Walter's Excel adapter produces Excel spreadsheets (in XLSX format) on either Windows Web servers or Windows clients, without needing Excel installed. This adapter uses the <a href="https://closedxml.codeplex.com/">ClosedXML</a> library (which itself is a wrapper around Microsoft's <a href="http://msdn.microsoft.com/en-us/library/office/bb448854(v=office.15).aspx">Open XML SDK)</a>.<br>
                 </li>
                 <li><strong>ListItem array</strong>. This adapter produces a ListItem array for populating ASP.NET's DropDownList controls or Windows's ComboBox. </li>
                 </ul>
                 <p></p><p>Should you need some other output type, it's easy to write your own output adapters by implementing a simple interface that Walter provides.</p>
                 <p>Before you dig deeply into Walter's technical details, take a look at the next three sections. They feature three example programs of Walter in action. These examples include a Windows-based query tester for Walter, a browser-based example, and a Windows-based example. 
+                
+                <div class="alert alert-info text-center">
+                 <p>Walter was written with AVR 11.2, Visual Studio 2012, and .NET 4.5. You'll need these versions to use Walter without any additional effort. For at least AVR 10.2, you should be able start an empty project and use Visual Studio's 'Add existing item' feature to pull Walter source files into that project to build your own AVR 10.2 version. For AVR 12.0 users, Walter should simply open and compile. Walter will soon be officially ported to AVR 12.0.</p>
+                 <p>
+                 </p>
+                </div>
+
                 <hr>
             </div>
 <!-- End: qf_overview.html -->
 <!-- Begin: qf-query-tester.html -->
             <div id="qf-query-tester" class="content section">
-              <h2>Query Tester</h2>
-                <p>The Query Tester is a Windows program that you can use to interactive test Walter queries. With a query defined, you can see its various outputs and the code (in either AVR, C#, or JavaScript) that you can copy to put the query in your appliation. The Query Test limits query parameters, order by fields, and query options to three each. This is a Query Tester limitation&mdash;Walter allows as many of each as you need.</p>
-
-<!--
-<img src="" height="405" width="592"/>
-Enter a query definition
-<img src="" height="405" width="592"/>
-See the query results as a datatable
-<img src="" height="405" width="592"/>
-The query results as Json
-<img src="" height="405" width="592"/>
-Use View>Show query as Excel to see query results as Excel
-<img src="" height="405" width="592"/>
-The query's arguments as Json
-<img src="" height="405" width="592"/>
-The AVR you can paste into your program to perform the query as defined
--->
+              <h2>Walter Query Tester</h2>
+                <p>The Query Tester is a Windows program that you can use to interactively create and test Walter queries. With a query defined, you can see its various outputs and the code (in either AVR, C#, or JavaScript) that you can copy to put the query in your appliation. The Query Test limits query parameters, order by fields, and query options to three each. This is a Query Tester limitation&mdash;Walter allows as many of each as you need.</p>
+                <p>Beyond creating and testing queries, the Query Tester also shows you the AVR (or C#) you need to paste into your application to reproduce the current query. The Query Tester is isn't intended to be an end-user application. Rather, it is aimed at programmers to create and test queries--and optionally generate the AVR needed to programmatically reproduce the query.</p>
 
     <div class="html-code grid-of-images">
       <div class="query-test-screen-shots-popup-gallery">
+
+        <div>
         <a href="public/images/Walter-query-entry-screen.png" 
-           title="Query definition" data-detail="Enter your query here.">
-           <img src="public/images/Walter-query-entry-screen.png" width="150" height="102" />
+           title="Fig 1. Query definition" data-detail="Enter your query here.">
+           <img src="public/images/Walter-query-entry-screen.png" width="200" height="150" />
         </a>
         <a href="public/images/Walter-query-results-as-datatable.png" 
-           title="Query results as a datatable" data-detail="Note the 'next page' link. Walter has automatic paging.">
-           <img src="public/images/Walter-query-results-as-datatable.png" width="150" height="102" />
-        </a>
-        <a href="public/images/Walter-query-results-as-json.png" 
-           title="Query results as Json" data-detail="The Json data includes 'list' array or query results and query meta data.">
-           <img src="public/images/Walter-query-results-as-json.png" width="150" height="102" />
-        </a><br/>
-        <a href="public/images/Walter-query-results-as-excel.png" 
-           title="Query results as Excel" data-detail="Any query can be exported as an Excel spreadsheet.">
-           <img src="public/images/Walter-query-results-as-excel.png" width="150" height="102" />
+           title="Fig 2. Query results as a datatable" data-detail="Note the 'next page' link. Walter has automatic paging.">
+           <img src="public/images/Walter-query-results-as-datatable.png" width="200" height="150" />
         </a>
         <a href="public/images/Walter-query-args.png"
-           title="Query arguements" data-detail="Query meta data is available as Json--mostly for diagnostic and debugging purposes.">
-           <img src="public/images/Walter-query-args.png" width="150" height="102" />
+           title="Fig 3. Query arguements" data-detail="Query meta data is available as Json--mostly for diagnostic and debugging purposes.">
+           <img src="public/images/Walter-query-args.png" width="200" height="150" />
+        </a>
+        </div>
+
+        <div>
+        <a href="public/images/Walter-query-results-as-json.png" 
+           title="Fig 4. Query results as Json" data-detail="The Json data includes 'list' array or query results and query meta data.">
+           <img src="public/images/Walter-query-results-as-json.png" width="200" height="150" />
         </a>
         <a href="public/images/Walter-AVR-query-code.png" 
-           title="AVR cut-and-paste code for the query" data-detail="This is the AVR needed to duplicate the query in your code. All output types are available.">
-           <img src="public/images/Walter-AVR-query-code.png" width="150" height="102" />
+           title="Fig 5. AVR cut-and-paste datatable code for the query" data-detail="AVR code to create a datatable with the query. ">
+           <img src="public/images/Walter-AVR-query-code.png" width="200" height="150" />
         </a>
+        <a href="public/images/Walter-AVR-json-code.png" 
+           title="Fig 6. AVR cut-and-paste Json code for the query" data-detail="AVR code to create Json with the query.">
+           <img src="public/images/Walter-AVR-query-code.png" width="200" height="150" />
+        </a>
+        </div>        
+
+        <div>
+        <a href="public/images/Walter-avr-to-excel-windows-code.png" 
+           title="Fig 7. AVR cut-and-paste Excel-for-Windows code for the query" data-detail="AVR code to create an Excel spreadsheet for a Windows app the query.">
+           <img src="public/images/Walter-AVR-query-code.png" width="200" height="150" />
+        </a>
+        <a href="public/images/Walter-avr-to-excel-web-code.png" 
+           title="Fig 8. AVR cut-and-paste Excel-for-Web for the query" data-detail="AVR code to create an Excel spreadsheet for a Web app the query..">
+           <img src="public/images/Walter-AVR-query-code.png" width="200" height="150" />
+        </a>
+        <a href="public/images/Walter-avr-to-listitem-code.png" 
+           title="Fig 9. AVR cut-and-paste ListItem array code for the query" data-detail="AVR code to create an array of ListItems with the query.">
+           <img src="public/images/Walter-AVR-query-code.png" width="200" height="150" />
+        </a>
+        </div>
+
+        <div>       
+        <a href="public/images/Walter-cs-datatable-code.png" 
+           title="Fig 10. C# cut-and-paste datatable code for the query" data-detail="C# code to create a datatable with the query.">
+           <img src="public/images/Walter-AVR-query-code.png" width="200" height="150" />
+        </a>
+        <a href="public/images/Walter-javascript-json-code.png" 
+           title="Fig 11. Javascript cut-and-paste code for the query" data-detail="JavaScript code to create Json with a query on the client side.">
+           <img src="public/images/Walter-AVR-query-code.png" width="200" height="150" />
+        </a>
+        <a href="public/images/Walter-query-results-as-excel.png" 
+           title="Fig 12. Query results as Excel" data-detail="Use 'View->Show query as Excel' to show the query as an Excel spreadsheet.">
+           <img src="public/images/Walter-query-results-as-excel.png" width="200" height="150" />
+        </a>
+        </div>
+    
       </div>
     </div>
 
-<br/><br/>
-<p><a href="https://github.com/ASNApalooza/Walter.Query.Tester">Query Tester on GitHub</a></p>
-<p><a href="https://github.com/ASNApalooza/Walter.Query.Tester/archive/master.zip">Query Tester direct zip download from GitHub</a></p>
+
+<div>
+<h3>Figure details</h3>
+  <ul>
+    <li><strong>Fig 1. Query definition</strong>. <p>This is the query definition panel. Enter the parameters for a query here. Although the query tester only allows three each of query parameters, order-by fields, and query options, Walter's API allows an unlimited number of them. Walter lets you save and then later open query definitions to your local drive.</p>
+<p>The DB Name prompt enumerates the ASNA DataGate database names on your PC. At least one database name must be present for the Query Tester to work.</p>
+    </li>
+    <li><strong>Fig 2. Query results as a datatable</strong>. This shows the query results as a datatable. Note the "Next page" link in the upper right-hand corner. Walter provides built-in "next page" support for paged queries.
+    </li>
+    <li><strong>Fig 3. Query arguements</strong>. In addition to returning the query results, Walter also returns a Json structure that provides meta data about the query. This data includes the query input arguments, its output arguments, and error info. All of these values are surfaced as properties of the Walter query object. These values are surfaced as a Json object for diagnostic and debugging purposes.
+    </li>
+    <li><strong>Fig 4. Query results as Json</strong>. This shows the query result as Json. The pure query results are in the "list" array of objects. The other values (resultRowCount, milliseconds, etc) are meta data about the query.
+    </li>
+    <li><strong>Fig 5. AVR cut-and-paste datatable code for the query</strong>. The code tabs provide the code you need to add the query you defined to your AVR application. The code presented reflects the current definition of the query (that is, this code is dynamically generated every time you tweak the query). Figure 5 shows the AVR code to produce a datatable from your query.
+    </li>
+    <li><strong>Fig 6. AVR cut-and-paste Json code for the query</strong>. The AVR code to produce Json from your query.
+    </li>
+    <li><strong>Fig 7. AVR cut-and-paste Excel-for-Windows code for the query</strong>. The AVR code to produce an Excel spreadsheet for Windows applications from your query.
+    </li>
+    <li><strong>Fig 8. AVR cut-and-paste Excel-for-Web for the query</strong>. The AVR code to produce an Excel spreadsheet for ASP.NET applications from your query.
+    </li>
+    <li><strong>Fig 9. AVR cut-and-paste ListItem array code for the query</strong>. The AVR code to produce an array of ListItems from your query. This is intended primarily for populating dropdown boxes in either Windows or Web applications (although the ListItem is an object belonging to the ASP.NET namespace domain, it works fine in Windows apps--it's just a data structure.) You can use this 
+    </li>
+    <li><strong>Fig 10. C# cut-and-paste datatable code for the query</strong>. Walter is an API, it doesn't use any AVR-specific components. For the five types of AVR code shown, the C# equivalent is also available. While not provided, you could also use Walter with VB.NET. (As an aside, Walter's Query Tester was written in C#--as an exercise in using Walter with C#). 
+    </li>
+    <li><strong>Fig 11. Javascript cut-and-paste code for the query</strong>. Walter provides a JavaScript interface to enable using Walter queries from the client side of ASP.NET applications. When used from JavaScript, Walter can only produce Json output. Figure 11 shows example JavaScript you'd use to use a Walter query from the client side. The JavaScript code preview is the <em>only</em> Code tab that doesn't dynamically represent the current query definition. (Fixing this is on my to-do list!).
+    </li>
+    </li>
+    <li><strong>Fig 12. Query results as Excel</strong>. Figures 7 and 8 show the code to produce an Excel spreadsheet from a Walter query. Use the QueryTester's View->Show query as Excel to show the spreadsheet Walter produces. The spreadsheet produced isn't a static example, it is produced at runtime from the current query definition. 
+    </li>
+  </ul>
+</div>
+
+<div class="you-tube-videos">
+<iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/lrcc1EMvnsQ?html5=1" frameborder="0" allowfullscreen ></iframe>
+</div
+
+<div class="you-tube-videos">
+<iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/LWa2SQ2epus?html5=1" frameborder="0" allowfullscreen ></iframe>
+</div
 
 
+
+
+<!-- btn btn-social btn-github pull-right -->
+
+<a class="btn btn-github" role="button" style="margin-top:16px;" href="https://github.com/ASNApalooza/Walter.Query.Tester/archive/master.zip" download="walter-query-tester.zip">
+<span class="fa fa-download"></span> Download Query Tester from GitHub
+</a>
+
+<a class="btn btn-github" role="button" style="margin-top:16px;" href="https://github.com/ASNApalooza/Walter.Query.Tester">
+<span class="fa fa-github"></span> See the Query Tester project on GitHub
+</a>
 <!-- End: qf-query-tester.html -->
 <!-- Begin: qf-walter-web.html -->
             <div id="qf-walter-web" class="content section">
@@ -837,29 +920,19 @@ ASNAHelpers.autoComplete.registerQuery(ACCustomerName);</pre></code>
     </div><!-- panel -->
 </div><!-- panel group -->
 
-asdfasdf
-
-
-<!--
-<asp:TextBox ID="textboxCustomerName"   runat="server" 
-             EnableViewState="False" ClientIDMode="Static"></asp:TextBox>
-<asp:TextBox ID="textboxCustomerNumber" runat="server" 
-             EnableViewState="False" ClientIDMode="Static">
--->
-
-                <p>Walter leans on jQuery's AutoComplete to do much of the heavy lifting, but Walter does kick in his own JavaScript for the task. Let's see how easy it is. First, use the Component Installer to ensure you get all the binaries, Javascript and other files you need. 
+<p>Walter leans on jQuery's AutoComplete to do much of the heavy lifting, but Walter does kick in his own JavaScript for the task. Let's see how easy it is. First, use the Component Installer to ensure you get all the binaries, Javascript and other files you need. 
 
 
 <!-- End: qf-jquery-autocomplete.html -->
 <!-- Begin: qf-jquery-datatable.html -->
             <div id="qf-jquery-datatable" class="content section">
               <h2>jQuery DataTable</h2>
-                <p></p>
+                <p>Coming soon!</p>
 <!-- End: qf-jquery-datatable.html -->
 <!-- Begin: qf-query-syntax.html -->
             <div id="qf-query-syntax" class="content section">
               <h2>Query Syntax</h2>
-                <p></p>
+                <p>Coming soon!</p>
 <!-- End: qf-query-syntax.html -->
 
           </div><!-- /.col-sm-9 -->
@@ -886,6 +959,8 @@ asdfasdf
     <script src="public/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="public/GooglePrettify/prettify.js"></script>
     <script src="public/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="public/js/fitvids.js"></script>
+
 
 
 <!--
@@ -970,6 +1045,8 @@ asdfasdf
 
 
         prettyPrint();
+
+        $(".you-tube-videos").fitvids();
 
       });
     </script>
