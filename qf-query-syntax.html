@@ -99,7 +99,144 @@
 <!-- Content starts here -->
             <div id="qf-query-syntax" class="content section">
               <h2>Query Syntax</h2>
-                <p>Coming soon!</p>
+                <p>Walter performs two kinds of queries: </p>
+<ul>
+  <li><strong>Paged queries.</strong>Paged queries use RPG's limits processing. The query parameters specified are directly related to the key structure of the physical or logical file specified. Walter uses the keys specified to set limits on the file. The result set is ordered by the input file's key structure. You can't override the sort order on paged queries nor can you filter the results sets. Paged queries are generally used to produce paged queries for grid elements in Windows or ASP.NET programs. Walter's paged queries provide a built-in "next page" capability to make it easy to scroll the "pages" of paged queries.
+
+Because they use the underlying access path, paged queries are very fast. 
+
+</li>
+  <li><strong>Simple queries.</strong>Simple queries use open query file-like queries. These queries are much more free-form that paged queries. They don't have a dependence on the input file's underlying key structure; you can specify a sort order; you can filter the result set; and, when the queried file is on the IBM i, you can use a variety of open query file's operators (such as %WLDCRD and %SST) to further filter the query. The IBM i's query engine is very capable and while for some simple queries the performance won't be as good as it with paged queries, in many cases simple queries performance is nearly equal to that of paged queries. Simply queries don't generally "page" data, but rather you use query paramters to scope the query results as needed. 
+</li>
+</ul>
+
+<h3>Paged queries</h3>
+<p>Let's take a closer look at paged queries. The file described below is a logical file over a customer master file. It is keyed on customer name (CMName) and customer number (CMCustNo). We'll use it to consider paged queries.
+ 
+<pre class="prettyprint">----------------------------------------------------------------------------
+File definition: Examples/CMastNewL2
+----------------------------------------------------------------------------
+Library.......: Examples
+File..........: CMastNewL2
+Key field(s)..: CMName, CMCustNo
+
+Field name           Data type   Length  Decimals  Description
+----------------------------------------------------------------------------
+ CMCustNo            Packed          9        0
+ CMName              Char           40
+ CMAddr1             Char           35
+ CMCity              Char           30
+ CMState             Char            2
+ CMCntry             Char            2
+ CMPostCode          Char           10
+ CMActive            Char            1
+ CMFax               Packed         10        0
+ CMPhone             Char           20
+----------------------------------------------------------------------------
+</pre>
+
+<p>Let's say you want to provide a paged query with a "position to" feature. The query below gets a 12-row "page" of data from Walter.  An annotated code description is below the code. </p>
+
+<pre class="prettyprint linenums">Using ASNA.DataGate.Client
+...
+DclFld Name Type(*String)
+DclFld Number Type(*Integer4)
+
+Name = "Smi"
+Number = 0 
+...
+
+DclConst DBNAME   Value("*Public/Cypress")
+
+DclFld db         Type(ASNA.DataGate.Client.AdgConnection)        
+DclFld Query      Type(ASNA.Helpers.DataServices.QueryDriver)
+DclFld dt         Type(DataTable) 
+
+db = *New AdgConnection(DBNAME) 
+Query = *New ASNA.Helpers.DataServices.QueryDriver(db)
+
+Query.Args.Inputs.Library      = "examples"
+Query.Args.Inputs.File         = "cmastnewl2"
+Query.Args.Inputs.FieldsList   = "CMCustNo,CMName, CMCity,CMState"
+Query.Args.Inputs.Rows         = 12
+
+Query.Args.Inputs.QueryParms.Add(*New ASNA.Helpers.DataServices.QueryField("CMNAME",Name))
+Query.Args.Inputs.QueryParms.Add(*New ASNA.Helpers.DataServices.QueryField("CMCUSTNO",Number))
+
+dt = Query.Exec() *As DataTable
+
+...
+...
+...
+
+dt = Query.NextPage()</pre>
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#qf-query-syntax-paged-query-1">
+          Toggle source code annotation
+        </a>
+      </h4>
+    </div>
+    <div id="qf-query-syntax-paged-query-1" class="panel-collapse collapse">
+      <div class="panel-body">
+                <table class="table table-striped">
+                <tr>
+                <th>Line Number</th>
+                <th>Description</th>
+                </tr>
+
+                <tr>
+                <td>6-7</td>
+                <td>The code below directly assigns values to the Name and Number fields, but in a real program these values would be been fetched from a user interface.</td>
+                </tr>
+
+                <tr>
+                <td>10-17</td>
+                <td>Declare and instance Walter's query object.</td>
+                </tr>
+
+                <tr>
+                <td>19-20</td>
+                <td>Assign the library and file name.</td>
+                </tr>
+
+                <tr>
+                <td>21</td>
+                <td>Assign the query fields. Any fields used as query parameters must be declared here. You can optionally provide aliases for any field list in any query.</td>
+                </tr>
+
+                <tr>
+                <td>22</td>
+                <td>Assign the maxinum number of rows in the result set. This defines the "page" size of a paged query.</td>
+                </tr>
+
+                <tr>
+                <td>24-25</td>
+                <td>Assign the query parameters and the parameter values. The field names specified here must be provided in the field list specified in line 21. For paged queries, the query parameters can nearly be thought of as a key list that will be used to impose limits for the record selection. You don't have to specify all of the key values as query parameters, but (as you're used to with SETLL or SETGT processing), you can only omit fields from the end of the key list. </td>
+                </tr>
+
+                <tr>
+                <td>27</td>
+                <td>Execute the query. This fetches the first page of results. This example is using Walter's default DataTable output adapter. However, you can use any output adapter with either paged or simple queries.</td>
+                </tr>
+
+                <tr>
+                <td>33</td>
+                <td>With the query object still in scope (or having been 'refreshed' with its QueryState variable--see the ASP.NET section for more on this) you can fetch subsequent pages of data with the NextPage() method. The NextPage() method is valid only with paged queries. An exception is thrown if you use it with a simple query. The Walter.Web.Demo and Walter.Windows.Demo both show NextPage() in action.</td>
+                </tr>
+                </table>
+            </div> <!-- .panel-body -->
+      </div><!-- panel-collapse collapse -->
+    </div><!-- panel -->
+</div><!-- panel group -->
+
+<h3>Simple queries</h3>
+<p>Coming soon!</p>
+
+
 <!-- Content ends here -->
 <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
           </div>
